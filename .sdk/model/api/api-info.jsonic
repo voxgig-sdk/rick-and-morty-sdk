@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Rick and Morty API Documentation"
+        url: "https://rickandmortyapi.com/documentation/"
+      }
+      description: "API providing information about characters, locations, and episodes from the Rick and Morty show. Supports GraphQL and REST endpoints for querying data."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://rickandmortyapi.com/api"
+        }
+      ]
+      title: "Rick and Morty API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

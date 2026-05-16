@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "episode": {
+      "EPISODE00": {
+        "air_date": "s46",
+        "character": [],
+        "created": "s48",
+        "episode": "s49",
+        "id": "EPISODE00",
+        "name": "s4b",
+        "url": "s4c"
+      },
+      "EPISODE01": {
+        "air_date": "s8c",
+        "character": [],
+        "created": "s8e",
+        "episode": "s8f",
+        "id": "EPISODE01",
+        "name": "s91",
+        "url": "s92"
+      },
+      "EPISODE02": {
+        "air_date": "sd2",
+        "character": [],
+        "created": "sd4",
+        "episode": "sd5",
+        "id": "EPISODE02",
+        "name": "sd7",
+        "url": "sd8"
+      }
+    }
+  },
+  "new": {
+    "episode": {
+      "episode_ref01": {
+        "air_date": "s118",
+        "character": [],
+        "created": "s11a",
+        "episode": "s11b",
+        "name": "s11d",
+        "url": "s11e"
+      }
+    }
+  }
+}

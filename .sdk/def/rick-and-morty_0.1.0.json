@@ -1,0 +1,667 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Rick and Morty API",
+    "description": "API providing information about characters, locations, and episodes from the Rick and Morty show. Supports GraphQL and REST endpoints for querying data.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Rick and Morty API Documentation",
+      "url": "https://rickandmortyapi.com/documentation/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://rickandmortyapi.com/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/character": {
+      "get": {
+        "summary": "Get all characters",
+        "description": "Returns a paginated list of all characters from the Rick and Morty show",
+        "operationId": "getCharacters",
+        "tags": [
+          "Character"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Filter by character name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by status (alive, dead, or unknown)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "alive",
+                "dead",
+                "unknown"
+              ]
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "description": "Filter by species",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "description": "Filter by gender",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "female",
+                "male",
+                "genderless",
+                "unknown"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CharacterResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No characters found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/character/{id}": {
+      "get": {
+        "summary": "Get a single character by ID",
+        "description": "Returns a single character by ID or multiple characters by an array of IDs",
+        "operationId": "getCharacterById",
+        "tags": [
+          "Character"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Character ID or comma-separated list of IDs",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Character"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Character"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Character not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/location": {
+      "get": {
+        "summary": "Get all locations",
+        "description": "Returns a paginated list of all locations from the Rick and Morty show",
+        "operationId": "getLocations",
+        "tags": [
+          "Location"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Filter by location name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dimension",
+            "in": "query",
+            "description": "Filter by dimension",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No locations found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/location/{id}": {
+      "get": {
+        "summary": "Get a single location by ID",
+        "description": "Returns a single location by ID or multiple locations by an array of IDs",
+        "operationId": "getLocationById",
+        "tags": [
+          "Location"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Location ID or comma-separated list of IDs",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Location"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Location"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Location not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/episode": {
+      "get": {
+        "summary": "Get all episodes",
+        "description": "Returns a paginated list of all episodes from the Rick and Morty show",
+        "operationId": "getEpisodes",
+        "tags": [
+          "Episode"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Filter by episode name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "episode",
+            "in": "query",
+            "description": "Filter by episode code (e.g., S01E01)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EpisodeResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No episodes found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/episode/{id}": {
+      "get": {
+        "summary": "Get a single episode by ID",
+        "description": "Returns a single episode by ID or multiple episodes by an array of IDs",
+        "operationId": "getEpisodeById",
+        "tags": [
+          "Episode"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Episode ID or comma-separated list of IDs",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Episode"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Episode"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Episode not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Character": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The id of the character"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the character"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the character",
+            "enum": [
+              "Alive",
+              "Dead",
+              "unknown"
+            ]
+          },
+          "species": {
+            "type": "string",
+            "description": "The species of the character"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type or subspecies of the character"
+          },
+          "gender": {
+            "type": "string",
+            "description": "The gender of the character",
+            "enum": [
+              "Female",
+              "Male",
+              "Genderless",
+              "unknown"
+            ]
+          },
+          "origin": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the origin location"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL to the origin location"
+              }
+            }
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the last known location"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL to the last known location"
+              }
+            }
+          },
+          "image": {
+            "type": "string",
+            "description": "Link to the character's image"
+          },
+          "episode": {
+            "type": "array",
+            "description": "List of episodes in which this character appeared",
+            "items": {
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": "string",
+            "description": "Link to the character's own URL endpoint"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time at which the character was created in the database"
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The id of the location"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the location"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the location"
+          },
+          "dimension": {
+            "type": "string",
+            "description": "The dimension in which the location is located"
+          },
+          "residents": {
+            "type": "array",
+            "description": "List of characters who have been last seen in this location",
+            "items": {
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": "string",
+            "description": "Link to the location's own URL endpoint"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time at which the location was created in the database"
+          }
+        }
+      },
+      "Episode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The id of the episode"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the episode"
+          },
+          "air_date": {
+            "type": "string",
+            "description": "The air date of the episode"
+          },
+          "episode": {
+            "type": "string",
+            "description": "The code of the episode (e.g., S01E01)"
+          },
+          "characters": {
+            "type": "array",
+            "description": "List of characters who have been seen in this episode",
+            "items": {
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": "string",
+            "description": "Link to the episode's own URL endpoint"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time at which the episode was created in the database"
+          }
+        }
+      },
+      "Info": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "The length of the response"
+          },
+          "pages": {
+            "type": "integer",
+            "description": "The amount of pages"
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "description": "Link to the next page (if it exists)"
+          },
+          "prev": {
+            "type": "string",
+            "nullable": true,
+            "description": "Link to the previous page (if it exists)"
+          }
+        }
+      },
+      "CharacterResponse": {
+        "type": "object",
+        "properties": {
+          "info": {
+            "$ref": "#/components/schemas/Info"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Character"
+            }
+          }
+        }
+      },
+      "LocationResponse": {
+        "type": "object",
+        "properties": {
+          "info": {
+            "$ref": "#/components/schemas/Info"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            }
+          }
+        }
+      },
+      "EpisodeResponse": {
+        "type": "object",
+        "properties": {
+          "info": {
+            "$ref": "#/components/schemas/Info"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Episode"
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Character",
+      "description": "Operations related to characters"
+    },
+    {
+      "name": "Location",
+      "description": "Operations related to locations"
+    },
+    {
+      "name": "Episode",
+      "description": "Operations related to episodes"
+    }
+  ]
+}

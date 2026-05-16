@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "location": {
+      "LOCATION00": {
+        "created": "s46",
+        "dimension": "s47",
+        "id": "LOCATION00",
+        "name": "s49",
+        "resident": [],
+        "type": "s4b",
+        "url": "s4c"
+      },
+      "LOCATION01": {
+        "created": "s8c",
+        "dimension": "s8d",
+        "id": "LOCATION01",
+        "name": "s8f",
+        "resident": [],
+        "type": "s91",
+        "url": "s92"
+      },
+      "LOCATION02": {
+        "created": "sd2",
+        "dimension": "sd3",
+        "id": "LOCATION02",
+        "name": "sd5",
+        "resident": [],
+        "type": "sd7",
+        "url": "sd8"
+      }
+    }
+  },
+  "new": {
+    "location": {
+      "location_ref01": {
+        "created": "s118",
+        "dimension": "s119",
+        "name": "s11b",
+        "resident": [],
+        "type": "s11d",
+        "url": "s11e"
+      }
+    }
+  }
+}

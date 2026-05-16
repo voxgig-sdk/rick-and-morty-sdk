@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "character": {
+      "CHARACTER00": {
+        "created": "s78",
+        "episode": [],
+        "gender": "s7a",
+        "id": "CHARACTER00",
+        "image": "s7c",
+        "location": {},
+        "name": "s7e",
+        "origin": {},
+        "species": "s80",
+        "status": "s81",
+        "type": "s82",
+        "url": "s83"
+      },
+      "CHARACTER01": {
+        "created": "sf0",
+        "episode": [],
+        "gender": "sf2",
+        "id": "CHARACTER01",
+        "image": "sf4",
+        "location": {},
+        "name": "sf6",
+        "origin": {},
+        "species": "sf8",
+        "status": "sf9",
+        "type": "sfa",
+        "url": "sfb"
+      },
+      "CHARACTER02": {
+        "created": "s168",
+        "episode": [],
+        "gender": "s16a",
+        "id": "CHARACTER02",
+        "image": "s16c",
+        "location": {},
+        "name": "s16e",
+        "origin": {},
+        "species": "s170",
+        "status": "s171",
+        "type": "s172",
+        "url": "s173"
+      }
+    }
+  },
+  "new": {
+    "character": {
+      "character_ref01": {
+        "created": "s1e0",
+        "episode": [],
+        "gender": "s1e2",
+        "image": "s1e4",
+        "location": {},
+        "name": "s1e6",
+        "origin": {},
+        "species": "s1e8",
+        "status": "s1e9",
+        "type": "s1ea",
+        "url": "s1eb"
+      }
+    }
+  }
+}
