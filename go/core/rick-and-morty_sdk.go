@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/rick-and-morty-sdk/go/utility/struct"
 )
 
 type RickAndMortySDK struct {

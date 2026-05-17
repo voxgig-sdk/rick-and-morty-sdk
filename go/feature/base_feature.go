@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/rick-and-morty-sdk/core"
+	"github.com/voxgig-sdk/rick-and-morty-sdk/go/core"
 )
 
 type BaseFeature struct {

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/rick-and-morty-sdk"
-	"github.com/voxgig-sdk/rick-and-morty-sdk/core"
+	sdk "github.com/voxgig-sdk/rick-and-morty-sdk/go"
+	"github.com/voxgig-sdk/rick-and-morty-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/rick-and-morty-sdk/go/utility/struct"
 )
 
 func TestLocationEntity(t *testing.T) {

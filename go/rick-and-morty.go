@@ -1,10 +1,10 @@
 package voxgigrickandmortysdk
 
 import (
-	"github.com/voxgig-sdk/rick-and-morty-sdk/core"
-	"github.com/voxgig-sdk/rick-and-morty-sdk/entity"
-	"github.com/voxgig-sdk/rick-and-morty-sdk/feature"
-	_ "github.com/voxgig-sdk/rick-and-morty-sdk/utility"
+	"github.com/voxgig-sdk/rick-and-morty-sdk/go/core"
+	"github.com/voxgig-sdk/rick-and-morty-sdk/go/entity"
+	"github.com/voxgig-sdk/rick-and-morty-sdk/go/feature"
+	_ "github.com/voxgig-sdk/rick-and-morty-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

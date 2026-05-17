@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/rick-and-morty-sdk/core"
+	"github.com/voxgig-sdk/rick-and-morty-sdk/go/core"
 )
 
 type LogFeature struct {

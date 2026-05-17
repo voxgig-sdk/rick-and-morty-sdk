@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/rick-and-morty-sdk/core"
+	"github.com/voxgig-sdk/rick-and-morty-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/rick-and-morty-sdk/go/utility/struct"
 )
 
 type EpisodeEntity struct {

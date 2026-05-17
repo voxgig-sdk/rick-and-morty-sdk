@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/rick-and-morty-sdk"
-	"github.com/voxgig-sdk/rick-and-morty-sdk/core"
+	sdk "github.com/voxgig-sdk/rick-and-morty-sdk/go"
+	"github.com/voxgig-sdk/rick-and-morty-sdk/go/core"
 )
 
 func TestCharacterDirect(t *testing.T) {
