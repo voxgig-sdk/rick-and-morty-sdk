@@ -102,7 +102,6 @@ function character_basic_setup(extra)
     ["RICKANDMORTY_TEST_CHARACTER_ENTID"] = idmap,
     ["RICKANDMORTY_TEST_LIVE"] = "FALSE",
     ["RICKANDMORTY_TEST_EXPLAIN"] = "FALSE",
-    ["RICKANDMORTY_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -114,7 +113,6 @@ function character_basic_setup(extra)
   if env["RICKANDMORTY_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["RICKANDMORTY_APIKEY"],
       },
       extra or {},
     })

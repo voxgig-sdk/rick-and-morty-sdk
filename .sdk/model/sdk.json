@@ -17,7 +17,19 @@
           }
         ],
         "title": "Rick and Morty API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Query characters, locations, and episodes from the Rick and Morty animated series via REST or GraphQL",
+        "homepage": "https://rickandmortyapi.com",
+        "docs_url": "https://rickandmortyapi.com/documentation",
+        "license_short": "Free public API, no authentication required; no formal licence published.",
+        "license_md": "- Free and open to use for non-commercial and educational projects, no API key or registration required.\n- No formal licence terms are published on the documentation site; attribution to the maintainer is appreciated.\n- Rick and Morty character names, images, and related assets are the property of their respective owners (Cartoon Network / Adult Swim) and are not licensed by this API.",
+        "about_md": "The Rick and Morty API is a free public REST and GraphQL service maintained by [Axel Fuhrmann](https://github.com/afuh) that exposes data drawn from the animated series *Rick and Morty*. The REST base URL is `https://rickandmortyapi.com/api` and a GraphQL endpoint is available at `https://rickandmortyapi.com/graphql`.\n\nWhat you get from the API:\n- Characters (826+) with `name`, `status`, `species`, `type`, `gender`, `origin`, `location`, `image`, an `episode` list, and a creation timestamp.\n- Locations (126+) with `name`, `type`, `dimension`, a `residents` list, and a creation timestamp.\n- Episodes (51+) with `name`, `air_date`, episode code, a `characters` list, and a creation timestamp.\n\nThe API is publicly accessible with no authentication. List responses are paginated (up to 20 items per page). Rate limits are not formally documented. Community client libraries exist for many languages including JavaScript, Python, Go, Ruby, Rust, and Java.",
+        "entity_desc": {
+          "character": "A person, alien, or creature from the show, with status, species, origin, and the list of episodes they appear in; served from `/api/character`.",
+          "episode": "A single episode with name, air date, episode code (e.g. `S01E01`), and the list of characters that appear in it; served from `/api/episode`.",
+          "location": "A planet, dimension, or other place from the show, with type, dimension, and the residents that call it home; served from `/api/location`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +37,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "character": {

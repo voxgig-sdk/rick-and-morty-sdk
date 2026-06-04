@@ -96,7 +96,6 @@ function location_basic_setup($extra)
         "RICKANDMORTY_TEST_LOCATION_ENTID" => $idmap,
         "RICKANDMORTY_TEST_LIVE" => "FALSE",
         "RICKANDMORTY_TEST_EXPLAIN" => "FALSE",
-        "RICKANDMORTY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +107,6 @@ function location_basic_setup($extra)
     if ($env["RICKANDMORTY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["RICKANDMORTY_APIKEY"],
             ],
             $extra ?? [],
         ]);

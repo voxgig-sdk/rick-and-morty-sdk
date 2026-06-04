@@ -20,9 +20,6 @@ class RickAndMortyConfig
             ],
             "options" => [
                 "base" => "https://rickandmortyapi.com/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
