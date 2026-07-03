@@ -1,19 +1,8 @@
 # RickAndMorty SDK
 
-Query characters, locations, and episodes from the Rick and Morty animated series via REST or GraphQL
+Rick and Morty API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Rick and Morty API
-
-The Rick and Morty API is a free public REST and GraphQL service maintained by [Axel Fuhrmann](https://github.com/afuh) that exposes data drawn from the animated series *Rick and Morty*. The REST base URL is `https://rickandmortyapi.com/api` and a GraphQL endpoint is available at `https://rickandmortyapi.com/graphql`.
-
-What you get from the API:
-- Characters (826+) with `name`, `status`, `species`, `type`, `gender`, `origin`, `location`, `image`, an `episode` list, and a creation timestamp.
-- Locations (126+) with `name`, `type`, `dimension`, a `residents` list, and a creation timestamp.
-- Episodes (51+) with `name`, `air_date`, episode code, a `characters` list, and a creation timestamp.
-
-The API is publicly accessible with no authentication. List responses are paginated (up to 20 items per page). Rate limits are not formally documented. Community client libraries exist for many languages including JavaScript, Python, Go, Ruby, Rust, and Java.
 
 ## Try it
 
@@ -47,29 +36,31 @@ gem install rick-and-morty-sdk
 luarocks install rick-and-morty-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { RickAndMortySDK } from 'rick-and-morty'
 
-const client = new RickAndMortySDK({})
+const client = new RickAndMortySDK({
+  apikey: process.env.RICK-AND-MORTY_APIKEY,
+})
 
 // List all characters
 const characters = await client.Character().list()
+console.log(characters.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Character** | A person, alien, or creature from the show, with status, species, origin, and the list of episodes they appear in; served from `/api/character`. | `/character` |
-| **Episode** | A single episode with name, air date, episode code (e.g. `S01E01`), and the list of characters that appear in it; served from `/api/episode`. | `/episode` |
-| **Location** | A planet, dimension, or other place from the show, with type, dimension, and the residents that call it home; served from `/api/location`. | `/location` |
+| **Character** |  | `/character` |
+| **Episode** |  | `/episode` |
+| **Location** |  | `/location` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,17 +102,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from rickandmorty_sdk import RickAndMortySDK
 
-client = RickAndMortySDK({})
+client = RickAndMortySDK({
+    "apikey": os.environ.get("RICK-AND-MORTY_APIKEY"),
+})
 
 # List all characters
-characters, err = client.Character(None).list(None, None)
+characters, err = client.Character().list()
+print(characters)
 
 # Load a specific character
-character, err = client.Character(None).load(
-    {"id": "example_id"}, None
-)
+character, err = client.Character().load({"id": "example_id"})
+print(character)
 ```
 
 ### PHP
@@ -130,15 +124,17 @@ character, err = client.Character(None).load(
 <?php
 require_once 'rickandmorty_sdk.php';
 
-$client = new RickAndMortySDK([]);
+$client = new RickAndMortySDK([
+    "apikey" => getenv("RICK-AND-MORTY_APIKEY"),
+]);
 
 // List all characters
-[$characters, $err] = $client->Character(null)->list(null, null);
+[$characters, $err] = $client->Character()->list();
+print_r($characters);
 
 // Load a specific character
-[$character, $err] = $client->Character(null)->load(
-    ["id" => "example_id"], null
-);
+[$character, $err] = $client->Character()->load(["id" => "example_id"]);
+print_r($character);
 ```
 
 ### Golang
@@ -146,10 +142,13 @@ $client = new RickAndMortySDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/rick-and-morty-sdk/go"
 
-client := sdk.NewRickAndMortySDK(map[string]any{})
+client := sdk.NewRickAndMortySDK(map[string]any{
+    "apikey": os.Getenv("RICK-AND-MORTY_APIKEY"),
+})
 
 // List all characters
 characters, err := client.Character(nil).List(nil, nil)
+fmt.Println(characters)
 ```
 
 ### Ruby
@@ -157,15 +156,17 @@ characters, err := client.Character(nil).List(nil, nil)
 ```ruby
 require_relative "RickAndMorty_sdk"
 
-client = RickAndMortySDK.new({})
+client = RickAndMortySDK.new({
+  "apikey" => ENV["RICK-AND-MORTY_APIKEY"],
+})
 
 # List all characters
-characters, err = client.Character(nil).list(nil, nil)
+characters, err = client.Character().list
+puts characters
 
 # Load a specific character
-character, err = client.Character(nil).load(
-  { "id" => "example_id" }, nil
-)
+character, err = client.Character().load({ "id" => "example_id" })
+puts character
 ```
 
 ### Lua
@@ -173,15 +174,17 @@ character, err = client.Character(nil).load(
 ```lua
 local sdk = require("rick-and-morty_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("RICK-AND-MORTY_APIKEY"),
+})
 
 -- List all characters
-local characters, err = client:Character(nil):list(nil, nil)
+local characters, err = client:Character():list()
+print(characters)
 
 -- Load a specific character
-local character, err = client:Character(nil):load(
-  { id = "example_id" }, nil
-)
+local character, err = client:Character():load({ id = "example_id" })
+print(character)
 ```
 
 ## Unit testing in offline mode
@@ -200,25 +203,21 @@ const result = await client.Character().load({ id: 'test01' })
 ### Python
 
 ```python
-client = RickAndMortySDK.test(None, None)
-result, err = client.Character(None).load(
-    {"id": "test01"}, None
-)
+client = RickAndMortySDK.test()
+result, err = client.Character().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = RickAndMortySDK::test(null, null);
-[$result, $err] = $client->Character(null)->load(
-    ["id" => "test01"], null
-);
+$client = RickAndMortySDK::test();
+[$result, $err] = $client->Character()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Character(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -227,19 +226,15 @@ result, err := client.Character(nil).Load(
 ### Ruby
 
 ```ruby
-client = RickAndMortySDK.test(nil, nil)
-result, err = client.Character(nil).load(
-  { "id" => "test01" }, nil
-)
+client = RickAndMortySDK.test
+result, err = client.Character().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Character(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Character():load({ id = "test01" })
 ```
 
 ## How it works
@@ -343,15 +338,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Rick and Morty API
-
-- Upstream: [https://rickandmortyapi.com](https://rickandmortyapi.com)
-- API docs: [https://rickandmortyapi.com/documentation](https://rickandmortyapi.com/documentation)
-
-- Free and open to use for non-commercial and educational projects, no API key or registration required.
-- No formal licence terms are published on the documentation site; attribution to the maintainer is appreciated.
-- Rick and Morty character names, images, and related assets are the property of their respective owners (Cartoon Network / Adult Swim) and are not licensed by this API.
 
 ---
 

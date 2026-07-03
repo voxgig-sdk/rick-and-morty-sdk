@@ -109,12 +109,14 @@ def _episode_direct_setup(mockres):
     env = runner.env_override({
         "RICKANDMORTY_TEST_EPISODE_ENTID": {},
         "RICKANDMORTY_TEST_LIVE": "FALSE",
+        "RICKANDMORTY_APIKEY": "NONE",
     })
 
     live = env.get("RICKANDMORTY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("RICKANDMORTY_APIKEY"),
         }
         client = RickAndMortySDK(merged_opts)
         return {

@@ -136,12 +136,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'RICKANDMORTY_TEST_EPISODE_ENTID': {},
     'RICKANDMORTY_TEST_LIVE': 'FALSE',
+    'RICKANDMORTY_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.RICKANDMORTY_TEST_LIVE
 
   if (live) {
     const client = new RickAndMortySDK({
+      apikey: env.RICKANDMORTY_APIKEY,
     })
 
     let idmap: any = env['RICKANDMORTY_TEST_EPISODE_ENTID']

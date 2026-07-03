@@ -194,12 +194,14 @@ func locationDirectSetup(mockres any) *locationDirectSetupResult {
 	env := envOverride(map[string]any{
 		"RICKANDMORTY_TEST_LOCATION_ENTID": map[string]any{},
 		"RICKANDMORTY_TEST_LIVE":    "FALSE",
+		"RICKANDMORTY_APIKEY":       "NONE",
 	})
 
 	live := env["RICKANDMORTY_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["RICKANDMORTY_APIKEY"],
 		}
 		client := sdk.NewRickAndMortySDK(mergedOpts)
 

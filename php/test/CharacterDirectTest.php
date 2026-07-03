@@ -123,12 +123,14 @@ function character_direct_setup($mockres)
     $env = Runner::env_override([
         "RICKANDMORTY_TEST_CHARACTER_ENTID" => [],
         "RICKANDMORTY_TEST_LIVE" => "FALSE",
+        "RICKANDMORTY_APIKEY" => "NONE",
     ]);
 
     $live = $env["RICKANDMORTY_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["RICKANDMORTY_APIKEY"],
         ];
         $client = new RickAndMortySDK($merged_opts);
         return [
