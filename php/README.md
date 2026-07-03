@@ -10,7 +10,7 @@ The PHP SDK for the RickAndMorty API — an entity-oriented client using PHP con
 
 ## Install
 ```bash
-composer require voxgig/rick-and-morty-sdk
+composer require voxgig-sdk/rick-and-morty
 ```
 
 

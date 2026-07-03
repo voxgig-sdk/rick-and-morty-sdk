@@ -10,7 +10,7 @@ The TypeScript SDK for the RickAndMorty API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install rick-and-morty
+npm install @voxgig-sdk/rick-and-morty
 ```
 ## Tutorial: your first API call
 

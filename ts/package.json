@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/rick-and-morty",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Rick and Morty public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "rick-and-morty"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/rick-and-morty-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/rick-and-morty-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/rick-and-morty-sdk/issues"
+  },
   "main": "dist/RickAndMortySDK.js",
   "type": "commonjs",
   "types": "dist/RickAndMortySDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "RickAndMorty",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

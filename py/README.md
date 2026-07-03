@@ -10,7 +10,7 @@ The Python SDK for the RickAndMorty API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install rick-and-morty-sdk
+pip install voxgig-sdk-rick-and-morty
 ```
 
 Or install from source:

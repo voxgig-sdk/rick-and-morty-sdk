@@ -10,13 +10,13 @@ The Ruby SDK for the RickAndMorty API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install rick-and-morty-sdk
+gem install voxgig-sdk-rick-and-morty
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "rick-and-morty-sdk"
+gem "voxgig-sdk-rick-and-morty"
 ```
 
 Then run:

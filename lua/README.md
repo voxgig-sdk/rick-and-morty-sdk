@@ -10,7 +10,7 @@ The Lua SDK for the RickAndMorty API — an entity-oriented client using Lua con
 
 ## Install
 ```bash
-luarocks install rick-and-morty-sdk
+luarocks install voxgig-sdk-rick-and-morty
 ```
 
 If the module is not yet published, add the source directory to

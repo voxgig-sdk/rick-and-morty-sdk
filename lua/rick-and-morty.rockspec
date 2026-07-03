@@ -8,12 +8,14 @@ source = {
   dir = "rick-and-morty-sdk/lua"
 }
 description = {
-  summary = "RickAndMorty SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Rick and Morty public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/rick-and-morty-sdk",
+  issues_url = "https://github.com/voxgig-sdk/rick-and-morty-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "rick-and-morty" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {
