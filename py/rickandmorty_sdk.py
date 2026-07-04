@@ -220,57 +220,27 @@ class RickAndMortySDK:
         }
 
 
-    @property
-    def character(self):
-        """Idiomatic facade: client.character.list() / client.character.load({"id": ...})."""
-        from entity.character_entity import CharacterEntity
-        cached = getattr(self, "_character", None)
-        if cached is None:
-            cached = CharacterEntity(self, None)
-            self._character = cached
-        return cached
-
-    def Character(self, data=None):
-        # Deprecated: use client.character instead.
+    def Character(self, data=None) -> "CharacterEntity":
+        """Entity factory: client.Character().list({}) / client.Character().load({"id": ...})."""
         from entity.character_entity import CharacterEntity
         return CharacterEntity(self, data)
 
 
-    @property
-    def episode(self):
-        """Idiomatic facade: client.episode.list() / client.episode.load({"id": ...})."""
-        from entity.episode_entity import EpisodeEntity
-        cached = getattr(self, "_episode", None)
-        if cached is None:
-            cached = EpisodeEntity(self, None)
-            self._episode = cached
-        return cached
-
-    def Episode(self, data=None):
-        # Deprecated: use client.episode instead.
+    def Episode(self, data=None) -> "EpisodeEntity":
+        """Entity factory: client.Episode().list({}) / client.Episode().load({"id": ...})."""
         from entity.episode_entity import EpisodeEntity
         return EpisodeEntity(self, data)
 
 
-    @property
-    def location(self):
-        """Idiomatic facade: client.location.list() / client.location.load({"id": ...})."""
-        from entity.location_entity import LocationEntity
-        cached = getattr(self, "_location", None)
-        if cached is None:
-            cached = LocationEntity(self, None)
-            self._location = cached
-        return cached
-
-    def Location(self, data=None):
-        # Deprecated: use client.location instead.
+    def Location(self, data=None) -> "LocationEntity":
+        """Entity factory: client.Location().list({}) / client.Location().load({"id": ...})."""
         from entity.location_entity import LocationEntity
         return LocationEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "RickAndMortySDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class RickAndMortySDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.character_entity import CharacterEntity
+    from entity.episode_entity import EpisodeEntity
+    from entity.location_entity import LocationEntity

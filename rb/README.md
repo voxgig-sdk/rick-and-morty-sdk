@@ -28,16 +28,14 @@ require_relative "RickAndMorty_sdk"
 client = RickAndMortySDK.new
 ```
 
-### 2. List characters
+### 2. List character records
 
 ```ruby
 begin
-  result = client.character.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Character records — iterate directly.
+  characters = client.Character.list
+  characters.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.character.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Character record (raises on error).
+  character = client.Character.load({ "id" => "example_id" })
+  puts character
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = RickAndMortySDK.test
+client = RickAndMortySDK.test({
+  "entity" => { "character" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.character.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+character = client.Character.load({ "id" => "test01" })
+puts character
 ```
 
 ### Use a custom fetch function
@@ -179,7 +182,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Character` | `(data) -> CharacterEntity` | Create a Character entity instance. |
-| `Episode` | `(data) -> EpisodeEntity` | Create a Episode entity instance. |
+| `Episode` | `(data) -> EpisodeEntity` | Create an Episode entity instance. |
 | `Location` | `(data) -> LocationEntity` | Create a Location entity instance. |
 
 ### Entity interface
@@ -279,7 +282,7 @@ API path: `/location`
 
 ### Character
 
-Create an instance: `const character = client.character`
+Create an instance: `character = client.Character`
 
 #### Operations
 
@@ -307,20 +310,22 @@ Create an instance: `const character = client.character`
 
 #### Example: Load
 
-```ts
-const character = await client.character.load({ id: 'character_id' })
+```ruby
+# load returns the bare Character record (raises on error).
+character = client.Character.load({ "id" => "character_id" })
 ```
 
 #### Example: List
 
-```ts
-const characters = await client.character.list()
+```ruby
+# list returns an Array of Character records (raises on error).
+characters = client.Character.list
 ```
 
 
 ### Episode
 
-Create an instance: `const episode = client.episode`
+Create an instance: `episode = client.Episode`
 
 #### Operations
 
@@ -343,20 +348,22 @@ Create an instance: `const episode = client.episode`
 
 #### Example: Load
 
-```ts
-const episode = await client.episode.load({ id: 'episode_id' })
+```ruby
+# load returns the bare Episode record (raises on error).
+episode = client.Episode.load({ "id" => "episode_id" })
 ```
 
 #### Example: List
 
-```ts
-const episodes = await client.episode.list()
+```ruby
+# list returns an Array of Episode records (raises on error).
+episodes = client.Episode.list
 ```
 
 
 ### Location
 
-Create an instance: `const location = client.location`
+Create an instance: `location = client.Location`
 
 #### Operations
 
@@ -379,14 +386,16 @@ Create an instance: `const location = client.location`
 
 #### Example: Load
 
-```ts
-const location = await client.location.load({ id: 'location_id' })
+```ruby
+# load returns the bare Location record (raises on error).
+location = client.Location.load({ "id" => "location_id" })
 ```
 
 #### Example: List
 
-```ts
-const locations = await client.location.list()
+```ruby
+# list returns an Array of Location records (raises on error).
+locations = client.Location.list
 ```
 
 
@@ -461,7 +470,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-character = client.character
+character = client.Character
 character.load({ "id" => "example_id" })
 
 # character.data_get now returns the loaded character data

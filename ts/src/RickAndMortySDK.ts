@@ -206,42 +206,21 @@ class RickAndMortySDK {
 
 
 
-  _character?: CharacterEntity
-
-  // Idiomatic facade: `client.character.list()` / `client.character.load({ id })`.
-  get character(): CharacterEntity {
-    return (this._character ??= new CharacterEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.character` instead. */
+  // Entity access: `client.Character().list()` / `client.Character().load({ id })`.
   Character(data?: any) {
     const self = this
     return new CharacterEntity(self,data)
   }
 
 
-  _episode?: EpisodeEntity
-
-  // Idiomatic facade: `client.episode.list()` / `client.episode.load({ id })`.
-  get episode(): EpisodeEntity {
-    return (this._episode ??= new EpisodeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.episode` instead. */
+  // Entity access: `client.Episode().list()` / `client.Episode().load({ id })`.
   Episode(data?: any) {
     const self = this
     return new EpisodeEntity(self,data)
   }
 
 
-  _location?: LocationEntity
-
-  // Idiomatic facade: `client.location.list()` / `client.location.load({ id })`.
-  get location(): LocationEntity {
-    return (this._location ??= new LocationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.location` instead. */
+  // Entity access: `client.Location().list()` / `client.Location().load({ id })`.
   Location(data?: any) {
     const self = this
     return new LocationEntity(self,data)

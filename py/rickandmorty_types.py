@@ -4,100 +4,95 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Character:
-    created: Optional[str] = None
-    episode: Optional[list] = None
-    gender: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[str] = None
-    location: Optional[dict] = None
-    name: Optional[str] = None
-    origin: Optional[dict] = None
-    species: Optional[str] = None
-    status: Optional[str] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
+class Character(TypedDict, total=False):
+    created: str
+    episode: list
+    gender: str
+    id: int
+    image: str
+    location: dict
+    name: str
+    origin: dict
+    species: str
+    status: str
+    type: str
+    url: str
 
 
-@dataclass
-class CharacterLoadMatch:
+class CharacterLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class CharacterListMatch:
-    created: Optional[str] = None
-    episode: Optional[list] = None
-    gender: Optional[str] = None
-    id: Optional[int] = None
-    image: Optional[str] = None
-    location: Optional[dict] = None
-    name: Optional[str] = None
-    origin: Optional[dict] = None
-    species: Optional[str] = None
-    status: Optional[str] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
+class CharacterListMatch(TypedDict, total=False):
+    created: str
+    episode: list
+    gender: str
+    id: int
+    image: str
+    location: dict
+    name: str
+    origin: dict
+    species: str
+    status: str
+    type: str
+    url: str
 
 
-@dataclass
-class Episode:
-    air_date: Optional[str] = None
-    character: Optional[list] = None
-    created: Optional[str] = None
-    episode: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    url: Optional[str] = None
+class Episode(TypedDict, total=False):
+    air_date: str
+    character: list
+    created: str
+    episode: str
+    id: int
+    name: str
+    url: str
 
 
-@dataclass
-class EpisodeLoadMatch:
+class EpisodeLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class EpisodeListMatch:
-    air_date: Optional[str] = None
-    character: Optional[list] = None
-    created: Optional[str] = None
-    episode: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    url: Optional[str] = None
+class EpisodeListMatch(TypedDict, total=False):
+    air_date: str
+    character: list
+    created: str
+    episode: str
+    id: int
+    name: str
+    url: str
 
 
-@dataclass
-class Location:
-    created: Optional[str] = None
-    dimension: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    resident: Optional[list] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
+class Location(TypedDict, total=False):
+    created: str
+    dimension: str
+    id: int
+    name: str
+    resident: list
+    type: str
+    url: str
 
 
-@dataclass
-class LocationLoadMatch:
+class LocationLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class LocationListMatch:
-    created: Optional[str] = None
-    dimension: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    resident: Optional[list] = None
-    type: Optional[str] = None
-    url: Optional[str] = None
-
+class LocationListMatch(TypedDict, total=False):
+    created: str
+    dimension: str
+    id: int
+    name: str
+    resident: list
+    type: str
+    url: str

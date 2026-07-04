@@ -31,26 +31,26 @@ local sdk = require("rick-and-morty_sdk")
 local client = sdk.new()
 ```
 
-### 2. List characters
+### 2. List character records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:character():list()
+local characters, err = client:Character():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(characters) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load a character
 
 ```lua
-local result, err = client:character():load({ id = "example_id" })
+local character, err = client:Character():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(character)
 ```
 
 
@@ -96,8 +96,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:character():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Character():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -176,7 +176,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Character` | `(data) -> CharacterEntity` | Create a Character entity instance. |
-| `Episode` | `(data) -> EpisodeEntity` | Create a Episode entity instance. |
+| `Episode` | `(data) -> EpisodeEntity` | Create an Episode entity instance. |
 | `Location` | `(data) -> LocationEntity` | Create a Location entity instance. |
 
 ### Entity interface
@@ -199,17 +199,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local character, err = client:Character():load({ id = "example_id" })
+    if err then error(err) end
+    -- character is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -273,7 +278,7 @@ API path: `/location`
 
 ### Character
 
-Create an instance: `const character = client.character`
+Create an instance: `local character = client:Character(nil)`
 
 #### Operations
 
@@ -301,20 +306,20 @@ Create an instance: `const character = client.character`
 
 #### Example: Load
 
-```ts
-const character = await client.character.load({ id: 'character_id' })
+```lua
+local character, err = client:Character():load({ id = "character_id" })
 ```
 
 #### Example: List
 
-```ts
-const characters = await client.character.list()
+```lua
+local characters, err = client:Character():list()
 ```
 
 
 ### Episode
 
-Create an instance: `const episode = client.episode`
+Create an instance: `local episode = client:Episode(nil)`
 
 #### Operations
 
@@ -337,20 +342,20 @@ Create an instance: `const episode = client.episode`
 
 #### Example: Load
 
-```ts
-const episode = await client.episode.load({ id: 'episode_id' })
+```lua
+local episode, err = client:Episode():load({ id = "episode_id" })
 ```
 
 #### Example: List
 
-```ts
-const episodes = await client.episode.list()
+```lua
+local episodes, err = client:Episode():list()
 ```
 
 
 ### Location
 
-Create an instance: `const location = client.location`
+Create an instance: `local location = client:Location(nil)`
 
 #### Operations
 
@@ -373,14 +378,14 @@ Create an instance: `const location = client.location`
 
 #### Example: Load
 
-```ts
-const location = await client.location.load({ id: 'location_id' })
+```lua
+local location, err = client:Location():load({ id = "location_id" })
 ```
 
 #### Example: List
 
-```ts
-const locations = await client.location.list()
+```lua
+local locations, err = client:Location():list()
 ```
 
 
@@ -455,7 +460,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local character = client:character()
+local character = client:Character()
 character:load({ id = "example_id" })
 
 -- character:data_get() now returns the loaded character data

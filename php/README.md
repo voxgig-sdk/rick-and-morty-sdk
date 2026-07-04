@@ -29,18 +29,16 @@ require_once 'rickandmorty_sdk.php';
 $client = new RickAndMortySDK();
 ```
 
-### 2. List characters
+### 2. List character records
 
 ```php
 try {
-    $result = $client->character()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Character records — iterate directly.
+    $characters = $client->Character()->list();
+    foreach ($characters as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->character()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Character record (throws on error).
+    $character = $client->Character()->load(["id" => "example_id"]);
+    print_r($character);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = RickAndMortySDK::test();
+$client = RickAndMortySDK::test([
+    "entity" => ["character" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->character()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$character = $client->Character()->load(["id" => "test01"]);
+print_r($character);
 ```
 
 ### Use a custom fetch function
@@ -183,7 +186,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `Character` | `($data): CharacterEntity` | Create a Character entity instance. |
-| `Episode` | `($data): EpisodeEntity` | Create a Episode entity instance. |
+| `Episode` | `($data): EpisodeEntity` | Create an Episode entity instance. |
 | `Location` | `($data): LocationEntity` | Create a Location entity instance. |
 
 ### Entity interface
@@ -284,7 +287,7 @@ API path: `/location`
 
 ### Character
 
-Create an instance: `const character = client.character`
+Create an instance: `$character = $client->Character();`
 
 #### Operations
 
@@ -312,20 +315,22 @@ Create an instance: `const character = client.character`
 
 #### Example: Load
 
-```ts
-const character = await client.character.load({ id: 'character_id' })
+```php
+// load() returns the bare Character record (throws on error).
+$character = $client->Character()->load(["id" => "character_id"]);
 ```
 
 #### Example: List
 
-```ts
-const characters = await client.character.list()
+```php
+// list() returns an array of Character records (throws on error).
+$characters = $client->Character()->list();
 ```
 
 
 ### Episode
 
-Create an instance: `const episode = client.episode`
+Create an instance: `$episode = $client->Episode();`
 
 #### Operations
 
@@ -348,20 +353,22 @@ Create an instance: `const episode = client.episode`
 
 #### Example: Load
 
-```ts
-const episode = await client.episode.load({ id: 'episode_id' })
+```php
+// load() returns the bare Episode record (throws on error).
+$episode = $client->Episode()->load(["id" => "episode_id"]);
 ```
 
 #### Example: List
 
-```ts
-const episodes = await client.episode.list()
+```php
+// list() returns an array of Episode records (throws on error).
+$episodes = $client->Episode()->list();
 ```
 
 
 ### Location
 
-Create an instance: `const location = client.location`
+Create an instance: `$location = $client->Location();`
 
 #### Operations
 
@@ -384,14 +391,16 @@ Create an instance: `const location = client.location`
 
 #### Example: Load
 
-```ts
-const location = await client.location.load({ id: 'location_id' })
+```php
+// load() returns the bare Location record (throws on error).
+$location = $client->Location()->load(["id" => "location_id"]);
 ```
 
 #### Example: List
 
-```ts
-const locations = await client.location.list()
+```php
+// list() returns an array of Location records (throws on error).
+$locations = $client->Location()->list();
 ```
 
 
@@ -466,7 +475,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$character = $client->character();
+$character = $client->Character();
 $character->load(["id" => "example_id"]);
 
 // $character->dataGet() now returns the loaded character data
