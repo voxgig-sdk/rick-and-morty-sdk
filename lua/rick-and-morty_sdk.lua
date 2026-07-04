@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:character():list() / client:character():load({ id = ... })
+function RickAndMortySDK:character(data)
+  local EntityMod = require("entity.character_entity")
+  if data == nil then
+    if self._character == nil then
+      self._character = EntityMod.new(self, nil)
+    end
+    return self._character
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:character() instead.
 function RickAndMortySDK:Character(data)
   local EntityMod = require("entity.character_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:episode():list() / client:episode():load({ id = ... })
+function RickAndMortySDK:episode(data)
+  local EntityMod = require("entity.episode_entity")
+  if data == nil then
+    if self._episode == nil then
+      self._episode = EntityMod.new(self, nil)
+    end
+    return self._episode
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:episode() instead.
 function RickAndMortySDK:Episode(data)
   local EntityMod = require("entity.episode_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:location():list() / client:location():load({ id = ... })
+function RickAndMortySDK:location(data)
+  local EntityMod = require("entity.location_entity")
+  if data == nil then
+    if self._location == nil then
+      self._location = EntityMod.new(self, nil)
+    end
+    return self._location
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:location() instead.
 function RickAndMortySDK:Location(data)
   local EntityMod = require("entity.location_entity")
   return EntityMod.new(self, data)

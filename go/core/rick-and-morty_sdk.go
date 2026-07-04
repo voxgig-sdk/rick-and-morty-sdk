@@ -245,16 +245,25 @@ func (sdk *RickAndMortySDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// Character returns a Character entity bound to this client.
+// Idiomatic usage: client.Character(nil).List(nil, nil) or
+// client.Character(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RickAndMortySDK) Character(data map[string]any) RickAndMortyEntity {
 	return NewCharacterEntityFunc(sdk, data)
 }
 
 
+// Episode returns a Episode entity bound to this client.
+// Idiomatic usage: client.Episode(nil).List(nil, nil) or
+// client.Episode(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RickAndMortySDK) Episode(data map[string]any) RickAndMortyEntity {
 	return NewEpisodeEntityFunc(sdk, data)
 }
 
 
+// Location returns a Location entity bound to this client.
+// Idiomatic usage: client.Location(nil).List(nil, nil) or
+// client.Location(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RickAndMortySDK) Location(data map[string]any) RickAndMortyEntity {
 	return NewLocationEntityFunc(sdk, data)
 }

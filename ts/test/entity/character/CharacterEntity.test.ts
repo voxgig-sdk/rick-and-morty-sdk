@@ -120,7 +120,6 @@ function basicSetup(extra?: any) {
     'RICK_AND_MORTY_TEST_CHARACTER_ENTID': idmap,
     'RICK_AND_MORTY_TEST_LIVE': 'FALSE',
     'RICK_AND_MORTY_TEST_EXPLAIN': 'FALSE',
-    'RICK_AND_MORTY_APIKEY': 'NONE',
   })
 
   idmap = env['RICK_AND_MORTY_TEST_CHARACTER_ENTID']
@@ -130,7 +129,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new RickAndMortySDK(merge([
       {
-        apikey: env.RICK_AND_MORTY_APIKEY,
       },
       extra
     ]))

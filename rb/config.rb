@@ -15,9 +15,6 @@ module RickAndMortyConfig
       },
       "options" => {
         "base" => "https://rickandmortyapi.com/api",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -215,6 +212,7 @@ module RickAndMortyConfig
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -368,6 +366,7 @@ module RickAndMortyConfig
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -530,6 +529,7 @@ module RickAndMortyConfig
                         "orig" => "id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
