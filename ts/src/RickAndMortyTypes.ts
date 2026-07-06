@@ -24,7 +24,20 @@ export interface CharacterLoadMatch {
   id: string
 }
 
-export type CharacterListMatch = Partial<Character>
+export interface CharacterListMatch {
+  created?: string
+  episode?: any[]
+  gender?: string
+  id?: number
+  image?: string
+  location?: Record<string, any>
+  name?: string
+  origin?: Record<string, any>
+  species?: string
+  status?: string
+  type?: string
+  url?: string
+}
 
 export interface Episode {
   air_date?: string
@@ -40,7 +53,15 @@ export interface EpisodeLoadMatch {
   id: string
 }
 
-export type EpisodeListMatch = Partial<Episode>
+export interface EpisodeListMatch {
+  air_date?: string
+  character?: any[]
+  created?: string
+  episode?: string
+  id?: number
+  name?: string
+  url?: string
+}
 
 export interface Location {
   created?: string
@@ -56,5 +77,13 @@ export interface LocationLoadMatch {
   id: string
 }
 
-export type LocationListMatch = Partial<Location>
+export interface LocationListMatch {
+  created?: string
+  dimension?: string
+  id?: number
+  name?: string
+  resident?: any[]
+  type?: string
+  url?: string
+}
 

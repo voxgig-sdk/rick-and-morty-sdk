@@ -8,7 +8,7 @@ Complete API reference for the RickAndMorty Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'rick-and-morty_sdk'
+require_relative 'RickAndMorty_sdk'
 
 client = RickAndMortySDK.new(options)
 ```
@@ -101,27 +101,27 @@ character = client.Character
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `episode` | ``$ARRAY`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `origin` | ``$OBJECT`` | No |  |
-| `species` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `created` | `String` | No |  |
+| `episode` | `Array` | No |  |
+| `gender` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `image` | `String` | No |  |
+| `location` | `Hash` | No |  |
+| `name` | `String` | No |  |
+| `origin` | `Hash` | No |  |
+| `species` | `String` | No |  |
+| `status` | `String` | No |  |
+| `type` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Character.list(nil)
+results = client.Character.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -172,22 +172,22 @@ episode = client.Episode
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `air_date` | ``$STRING`` | No |  |
-| `character` | ``$ARRAY`` | No |  |
-| `created` | ``$STRING`` | No |  |
-| `episode` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `air_date` | `String` | No |  |
+| `character` | `Array` | No |  |
+| `created` | `String` | No |  |
+| `episode` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Episode.list(nil)
+results = client.Episode.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -238,22 +238,22 @@ location = client.Location
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `dimension` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `resident` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `created` | `String` | No |  |
+| `dimension` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `resident` | `Array` | No |  |
+| `type` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Location.list(nil)
+results = client.Location.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

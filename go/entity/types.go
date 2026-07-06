@@ -29,8 +29,7 @@ type CharacterLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// CharacterListMatch mirrors the character fields as an all-optional match
-// filter (Go analog of Partial<Character>).
+// CharacterListMatch is the typed request payload for Character.ListTyped.
 type CharacterListMatch struct {
 	Created *string `json:"created,omitempty"`
 	Episode *[]any `json:"episode,omitempty"`
@@ -62,8 +61,7 @@ type EpisodeLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// EpisodeListMatch mirrors the episode fields as an all-optional match
-// filter (Go analog of Partial<Episode>).
+// EpisodeListMatch is the typed request payload for Episode.ListTyped.
 type EpisodeListMatch struct {
 	AirDate *string `json:"air_date,omitempty"`
 	Character *[]any `json:"character,omitempty"`
@@ -90,8 +88,7 @@ type LocationLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// LocationListMatch mirrors the location fields as an all-optional match
-// filter (Go analog of Partial<Location>).
+// LocationListMatch is the typed request payload for Location.ListTyped.
 type LocationListMatch struct {
 	Created *string `json:"created,omitempty"`
 	Dimension *string `json:"dimension,omitempty"`

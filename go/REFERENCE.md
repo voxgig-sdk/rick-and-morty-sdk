@@ -105,18 +105,18 @@ character := client.Character(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `episode` | ``$ARRAY`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `origin` | ``$OBJECT`` | No |  |
-| `species` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `created` | `string` | No |  |
+| `episode` | `[]any` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `int` | No |  |
+| `image` | `string` | No |  |
+| `location` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
+| `origin` | `map[string]any` | No |  |
+| `species` | `string` | No |  |
+| `status` | `string` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -170,13 +170,13 @@ episode := client.Episode(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `air_date` | ``$STRING`` | No |  |
-| `character` | ``$ARRAY`` | No |  |
-| `created` | ``$STRING`` | No |  |
-| `episode` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `air_date` | `string` | No |  |
+| `character` | `[]any` | No |  |
+| `created` | `string` | No |  |
+| `episode` | `string` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -230,13 +230,13 @@ location := client.Location(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `dimension` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `resident` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `created` | `string` | No |  |
+| `dimension` | `string` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `resident` | `[]any` | No |  |
+| `type` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 

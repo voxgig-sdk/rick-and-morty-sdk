@@ -35,7 +35,7 @@ class CharacterLoadMatch
     public string $id;
 }
 
-/** Match filter for Character#list (any subset of Character fields). */
+/** Request payload for Character#list. */
 class CharacterListMatch
 {
     public ?string $created = null;
@@ -70,7 +70,7 @@ class EpisodeLoadMatch
     public string $id;
 }
 
-/** Match filter for Episode#list (any subset of Episode fields). */
+/** Request payload for Episode#list. */
 class EpisodeListMatch
 {
     public ?string $air_date = null;
@@ -100,7 +100,7 @@ class LocationLoadMatch
     public string $id;
 }
 
-/** Match filter for Location#list (any subset of Location fields). */
+/** Request payload for Location#list. */
 class LocationListMatch
 {
     public ?string $created = null;

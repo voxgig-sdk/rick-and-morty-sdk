@@ -8,7 +8,7 @@ Complete API reference for the RickAndMorty Python SDK.
 ### Constructor
 
 ```python
-from rick-and-morty_sdk import RickAndMortySDK
+from rickandmorty_sdk import RickAndMortySDK
 
 client = RickAndMortySDK(options)
 ```
@@ -95,27 +95,27 @@ character = client.Character()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `episode` | ``$ARRAY`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `origin` | ``$OBJECT`` | No |  |
-| `species` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `created` | `str` | No |  |
+| `episode` | `list` | No |  |
+| `gender` | `str` | No |  |
+| `id` | `int` | No |  |
+| `image` | `str` | No |  |
+| `location` | `dict` | No |  |
+| `name` | `str` | No |  |
+| `origin` | `dict` | No |  |
+| `species` | `str` | No |  |
+| `status` | `str` | No |  |
+| `type` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Character().list({})
+results = client.Character().list()
 for character in results:
     print(character)
 ```
@@ -167,22 +167,22 @@ episode = client.Episode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `air_date` | ``$STRING`` | No |  |
-| `character` | ``$ARRAY`` | No |  |
-| `created` | ``$STRING`` | No |  |
-| `episode` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `air_date` | `str` | No |  |
+| `character` | `list` | No |  |
+| `created` | `str` | No |  |
+| `episode` | `str` | No |  |
+| `id` | `int` | No |  |
+| `name` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Episode().list({})
+results = client.Episode().list()
 for episode in results:
     print(episode)
 ```
@@ -234,22 +234,22 @@ location = client.Location()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | ``$STRING`` | No |  |
-| `dimension` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `resident` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `created` | `str` | No |  |
+| `dimension` | `str` | No |  |
+| `id` | `int` | No |  |
+| `name` | `str` | No |  |
+| `resident` | `list` | No |  |
+| `type` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Location().list({})
+results = client.Location().list()
 for location in results:
     print(location)
 ```
