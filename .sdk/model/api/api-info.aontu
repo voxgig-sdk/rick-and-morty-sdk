@@ -16,9 +16,9 @@ main: {
           url: "https://rickandmortyapi.com/api"
         }
       ]
+      summary: "API providing information about characters, locations, and episodes from the Rick and Morty show."
       title: "Rick and Morty API"
       version: "1.0.0"
+      website: "https://rickandmortyapi.com"
     }
   }
-}
-
