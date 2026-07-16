@@ -37,7 +37,20 @@ func main() {
 	addr := flag.String("addr", ":8080", "listen address for http transport")
 	flag.Parse()
 
-	client := sdk.NewRickAndMortySDK(nil)
+	// Configure from the environment: RICK_AND_MORTY_APIKEY carries the API key and
+	// RICK_AND_MORTY_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("RICK_AND_MORTY_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("RICK_AND_MORTY_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewRickAndMortySDK(opts)
 	server := mcp.NewServer(
 		&mcp.Implementation{
 			Name:    "rick-and-morty",
