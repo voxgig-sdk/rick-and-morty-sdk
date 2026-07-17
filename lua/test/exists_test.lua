@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- RickAndMorty SDK exists test
 
 local sdk = require("rick-and-morty_sdk")
 
