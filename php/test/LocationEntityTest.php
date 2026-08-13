@@ -72,7 +72,7 @@ class LocationEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set RICKANDMORTY_TEST_LOCATION_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set RICK_AND_MORTY_TEST_LOCATION_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -97,7 +97,7 @@ class LocationEntityTest extends TestCase
             "id" => $location_ref01_data["id"],
         ];
         $location_ref01_data_dt0_loaded = $location_ref01_ent->load($location_ref01_match_dt0, null);
-        $location_ref01_data_dt0_load_result = Helpers::to_map($location_ref01_data_dt0_loaded);
+        $location_ref01_data_dt0_load_result = Helpers::to_map(is_object($location_ref01_data_dt0_loaded) && method_exists($location_ref01_data_dt0_loaded, 'data_get') ? $location_ref01_data_dt0_loaded->data_get() : $location_ref01_data_dt0_loaded);
         $this->assertNotNull($location_ref01_data_dt0_load_result);
         $this->assertEquals($location_ref01_data_dt0_load_result["id"], $location_ref01_data["id"]);
 
@@ -126,22 +126,22 @@ function location_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("RICKANDMORTY_TEST_LOCATION_ENTID");
+    $entid_env_raw = getenv("RICK_AND_MORTY_TEST_LOCATION_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "RICKANDMORTY_TEST_LOCATION_ENTID" => $idmap,
-        "RICKANDMORTY_TEST_LIVE" => "FALSE",
-        "RICKANDMORTY_TEST_EXPLAIN" => "FALSE",
+        "RICK_AND_MORTY_TEST_LOCATION_ENTID" => $idmap,
+        "RICK_AND_MORTY_TEST_LIVE" => "FALSE",
+        "RICK_AND_MORTY_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["RICKANDMORTY_TEST_LOCATION_ENTID"]);
+        $env["RICK_AND_MORTY_TEST_LOCATION_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["RICKANDMORTY_TEST_LIVE"] === "TRUE") {
+    if ($env["RICK_AND_MORTY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -150,13 +150,13 @@ function location_basic_setup($extra)
         $client = new RickAndMortySDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["RICKANDMORTY_TEST_LIVE"] === "TRUE";
+    $live = $env["RICK_AND_MORTY_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["RICKANDMORTY_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["RICK_AND_MORTY_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

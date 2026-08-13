@@ -26,7 +26,7 @@ main: kit: entity: location: {
       type: "`$STRING`"
     }
     {
-      name: "resident"
+      name: "residents"
       req: false
       type: "`$ARRAY`"
     }

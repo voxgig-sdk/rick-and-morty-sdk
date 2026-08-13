@@ -56,7 +56,7 @@ class CharacterListMatch
 class Episode
 {
     public ?string $air_date = null;
-    public ?array $character = null;
+    public ?array $characters = null;
     public ?string $created = null;
     public ?string $episode = null;
     public ?int $id = null;
@@ -74,7 +74,7 @@ class EpisodeLoadMatch
 class EpisodeListMatch
 {
     public ?string $air_date = null;
-    public ?array $character = null;
+    public ?array $characters = null;
     public ?string $created = null;
     public ?string $episode = null;
     public ?int $id = null;
@@ -89,7 +89,7 @@ class Location
     public ?string $dimension = null;
     public ?int $id = null;
     public ?string $name = null;
-    public ?array $resident = null;
+    public ?array $residents = null;
     public ?string $type = null;
     public ?string $url = null;
 }
@@ -107,7 +107,7 @@ class LocationListMatch
     public ?string $dimension = null;
     public ?int $id = null;
     public ?string $name = null;
-    public ?array $resident = null;
+    public ?array $residents = null;
     public ?string $type = null;
     public ?string $url = null;
 }

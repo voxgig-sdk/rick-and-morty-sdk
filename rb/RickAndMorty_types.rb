@@ -128,7 +128,7 @@ CharacterListMatch = Struct.new(
 # @!attribute [rw] air_date
 #   @return [String, nil]
 #
-# @!attribute [rw] character
+# @!attribute [rw] characters
 #   @return [Array, nil]
 #
 # @!attribute [rw] created
@@ -147,7 +147,7 @@ CharacterListMatch = Struct.new(
 #   @return [String, nil]
 Episode = Struct.new(
   :air_date,
-  :character,
+  :characters,
   :created,
   :episode,
   :id,
@@ -170,7 +170,7 @@ EpisodeLoadMatch = Struct.new(
 # @!attribute [rw] air_date
 #   @return [String, nil]
 #
-# @!attribute [rw] character
+# @!attribute [rw] characters
 #   @return [Array, nil]
 #
 # @!attribute [rw] created
@@ -189,7 +189,7 @@ EpisodeLoadMatch = Struct.new(
 #   @return [String, nil]
 EpisodeListMatch = Struct.new(
   :air_date,
-  :character,
+  :characters,
   :created,
   :episode,
   :id,
@@ -212,7 +212,7 @@ EpisodeListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] resident
+# @!attribute [rw] residents
 #   @return [Array, nil]
 #
 # @!attribute [rw] type
@@ -225,7 +225,7 @@ Location = Struct.new(
   :dimension,
   :id,
   :name,
-  :resident,
+  :residents,
   :type,
   :url,
   keyword_init: true
@@ -254,7 +254,7 @@ LocationLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] resident
+# @!attribute [rw] residents
 #   @return [Array, nil]
 #
 # @!attribute [rw] type
@@ -267,7 +267,7 @@ LocationListMatch = Struct.new(
   :dimension,
   :id,
   :name,
-  :resident,
+  :residents,
   :type,
   :url,
   keyword_init: true

@@ -3,7 +3,7 @@
     "episode": {
       "EPISODE00": {
         "air_date": "s46",
-        "character": [],
+        "characters": [],
         "created": "s48",
         "episode": "s49",
         "id": "EPISODE00",
@@ -12,7 +12,7 @@
       },
       "EPISODE01": {
         "air_date": "s8c",
-        "character": [],
+        "characters": [],
         "created": "s8e",
         "episode": "s8f",
         "id": "EPISODE01",
@@ -21,7 +21,7 @@
       },
       "EPISODE02": {
         "air_date": "sd2",
-        "character": [],
+        "characters": [],
         "created": "sd4",
         "episode": "sd5",
         "id": "EPISODE02",
@@ -34,7 +34,7 @@
     "episode": {
       "episode_ref01": {
         "air_date": "s118",
-        "character": [],
+        "characters": [],
         "created": "s11a",
         "episode": "s11b",
         "name": "s11d",

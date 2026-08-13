@@ -172,7 +172,7 @@ $episode = $client->Episode();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `air_date` | `string` | No |  |
-| `character` | `array` | No |  |
+| `characters` | `array` | No |  |
 | `created` | `string` | No |  |
 | `episode` | `string` | No |  |
 | `id` | `int` | No |  |
@@ -241,7 +241,7 @@ $location = $client->Location();
 | `dimension` | `string` | No |  |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
-| `resident` | `array` | No |  |
+| `residents` | `array` | No |  |
 | `type` | `string` | No |  |
 | `url` | `string` | No |  |
 

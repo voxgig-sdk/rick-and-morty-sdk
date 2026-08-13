@@ -114,11 +114,11 @@ def character_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "RICKANDMORTY_TEST_CHARACTER_ENTID" => {},
-    "RICKANDMORTY_TEST_LIVE" => "FALSE",
+    "RICK_AND_MORTY_TEST_CHARACTER_ENTID" => {},
+    "RICK_AND_MORTY_TEST_LIVE" => "FALSE",
   })
 
-  live = env["RICKANDMORTY_TEST_LIVE"] == "TRUE"
+  live = env["RICK_AND_MORTY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

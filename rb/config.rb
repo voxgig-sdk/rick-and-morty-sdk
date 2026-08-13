@@ -173,6 +173,7 @@ module RickAndMortyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/character",
                   "parts" => [
@@ -216,6 +217,7 @@ module RickAndMortyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/character/{id}",
                   "parts" => [
@@ -252,7 +254,7 @@ module RickAndMortyConfig
             },
             {
               "active" => true,
-              "name" => "character",
+              "name" => "characters",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 1,
@@ -330,6 +332,7 @@ module RickAndMortyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/episode",
                   "parts" => [
@@ -370,6 +373,7 @@ module RickAndMortyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/episode/{id}",
                   "parts" => [
@@ -427,7 +431,7 @@ module RickAndMortyConfig
             },
             {
               "active" => true,
-              "name" => "resident",
+              "name" => "residents",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 4,
@@ -492,6 +496,7 @@ module RickAndMortyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/location",
                   "parts" => [
@@ -533,6 +538,7 @@ module RickAndMortyConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/location/{id}",
                   "parts" => [

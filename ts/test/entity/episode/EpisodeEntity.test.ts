@@ -26,8 +26,8 @@ import {
 describe('EpisodeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when RICKANDMORTY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('RICKANDMORTY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when RICK_AND_MORTY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('RICK_AND_MORTY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = RickAndMortySDK.test()
@@ -63,13 +63,13 @@ describe('EpisodeEntity', async () => {
     const episode_ref01_ent = client.Episode()
     const episode_ref01_match: any = {}
 
-    const episode_ref01_list = await episode_ref01_ent.list(episode_ref01_match)
+    const episode_ref01_list = (await episode_ref01_ent.list(episode_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const episode_ref01_match_dt0: any = {}
     episode_ref01_match_dt0.id = episode_ref01_data.id
-    const episode_ref01_data_dt0 = await episode_ref01_ent.load(episode_ref01_match_dt0)
+    const episode_ref01_data_dt0 = (await episode_ref01_ent.load(episode_ref01_match_dt0)).data()
     assert(episode_ref01_data_dt0.id === episode_ref01_data.id)
 
 

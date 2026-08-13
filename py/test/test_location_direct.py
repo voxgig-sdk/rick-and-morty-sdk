@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from rickandmorty_sdk.utility.voxgig_struct import voxgig_struct as vs
 from rickandmorty_sdk import RickAndMortySDK
-from core import helpers
+from rickandmorty_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _location_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "RICKANDMORTY_TEST_LOCATION_ENTID": {},
-        "RICKANDMORTY_TEST_LIVE": "FALSE",
+        "RICK_AND_MORTY_TEST_LOCATION_ENTID": {},
+        "RICK_AND_MORTY_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("RICKANDMORTY_TEST_LIVE") == "TRUE"
+    live = env.get("RICK_AND_MORTY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

@@ -92,7 +92,7 @@ func TestCharacterEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set RICKANDMORTY_TEST_CHARACTER_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set RICK_AND_MORTY_TEST_CHARACTER_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -128,7 +128,7 @@ func TestCharacterEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		characterRef01DataDt0LoadResult := core.ToMapAny(characterRef01DataDt0Loaded)
+		characterRef01DataDt0LoadResult := core.ToMapAny(entityData(characterRef01DataDt0Loaded))
 		if characterRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}
@@ -176,21 +176,21 @@ func characterBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("RICKANDMORTY_TEST_CHARACTER_ENTID")
+	entidEnvRaw := os.Getenv("RICK_AND_MORTY_TEST_CHARACTER_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"RICKANDMORTY_TEST_CHARACTER_ENTID": idmap,
-		"RICKANDMORTY_TEST_LIVE":      "FALSE",
-		"RICKANDMORTY_TEST_EXPLAIN":   "FALSE",
+		"RICK_AND_MORTY_TEST_CHARACTER_ENTID": idmap,
+		"RICK_AND_MORTY_TEST_LIVE":      "FALSE",
+		"RICK_AND_MORTY_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["RICKANDMORTY_TEST_CHARACTER_ENTID"])
+	idmapResolved := core.ToMapAny(env["RICK_AND_MORTY_TEST_CHARACTER_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["RICKANDMORTY_TEST_LIVE"] == "TRUE" {
+	if env["RICK_AND_MORTY_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -199,13 +199,13 @@ func characterBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewRickAndMortySDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["RICKANDMORTY_TEST_LIVE"] == "TRUE"
+	live := env["RICK_AND_MORTY_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["RICKANDMORTY_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["RICK_AND_MORTY_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

@@ -70,7 +70,7 @@ describe("CharacterEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set RICKANDMORTY_TEST_CHARACTER_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set RICK_AND_MORTY_TEST_CHARACTER_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -97,7 +97,7 @@ describe("CharacterEntity", function()
     }
     local character_ref01_data_dt0_loaded, err = character_ref01_ent:load(character_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local character_ref01_data_dt0_load_result = helpers.to_map(character_ref01_data_dt0_loaded)
+    local character_ref01_data_dt0_load_result = helpers.to_map(type(character_ref01_data_dt0_loaded) == 'table' and character_ref01_data_dt0_loaded.data_get and character_ref01_data_dt0_loaded:data_get() or character_ref01_data_dt0_loaded)
     assert.is_not_nil(character_ref01_data_dt0_load_result)
     assert.are.equal(character_ref01_data_dt0_load_result["id"], character_ref01_data["id"])
 
@@ -136,22 +136,22 @@ function character_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("RICKANDMORTY_TEST_CHARACTER_ENTID")
+  local entid_env_raw = os.getenv("RICK_AND_MORTY_TEST_CHARACTER_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["RICKANDMORTY_TEST_CHARACTER_ENTID"] = idmap,
-    ["RICKANDMORTY_TEST_LIVE"] = "FALSE",
-    ["RICKANDMORTY_TEST_EXPLAIN"] = "FALSE",
+    ["RICK_AND_MORTY_TEST_CHARACTER_ENTID"] = idmap,
+    ["RICK_AND_MORTY_TEST_LIVE"] = "FALSE",
+    ["RICK_AND_MORTY_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["RICKANDMORTY_TEST_CHARACTER_ENTID"])
+    env["RICK_AND_MORTY_TEST_CHARACTER_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["RICKANDMORTY_TEST_LIVE"] == "TRUE" then
+  if env["RICK_AND_MORTY_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -160,13 +160,13 @@ function character_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["RICKANDMORTY_TEST_LIVE"] == "TRUE"
+  local live = env["RICK_AND_MORTY_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["RICKANDMORTY_TEST_EXPLAIN"] == "TRUE",
+    explain = env["RICK_AND_MORTY_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

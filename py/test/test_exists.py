@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# RickAndMorty SDK exists test
 
 import pytest
 from rickandmorty_sdk import RickAndMortySDK

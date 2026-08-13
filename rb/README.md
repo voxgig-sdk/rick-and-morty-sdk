@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Character record (raises on error).
+  # load returns the ENTITY — call data_get for the Character record (raises on error).
   character = client.Character.load({ "id" => "example_id" })
   puts character
 rescue => err
@@ -63,7 +63,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  characters = client.Character.list()
+  locations = client.Location.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -131,12 +131,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = RickAndMortySDK.test({
-  "entity" => { "character" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "location" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-character = client.Character.list()
-puts character
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+location = client.Location.list()
+puts location
 ```
 
 ### Use a custom fetch function
@@ -276,7 +277,7 @@ API path: `/character`
 | Field | Description |
 | --- | --- |
 | `air_date` |  |
-| `character` |  |
+| `characters` |  |
 | `created` |  |
 | `episode` |  |
 | `id` |  |
@@ -295,7 +296,7 @@ API path: `/episode`
 | `dimension` |  |
 | `id` |  |
 | `name` |  |
-| `resident` |  |
+| `residents` |  |
 | `type` |  |
 | `url` |  |
 
@@ -339,7 +340,7 @@ Create an instance: `character = client.Character`
 #### Example: Load
 
 ```ruby
-# load returns the bare Character record (raises on error).
+# load returns the ENTITY — call data_get for the Character record (raises on error).
 character = client.Character.load({ "id" => "character_id" })
 ```
 
@@ -367,7 +368,7 @@ Create an instance: `episode = client.Episode`
 | Field | Type | Description |
 | --- | --- | --- |
 | `air_date` | `String` |  |
-| `character` | `Array` |  |
+| `characters` | `Array` |  |
 | `created` | `String` |  |
 | `episode` | `String` |  |
 | `id` | `Integer` |  |
@@ -377,7 +378,7 @@ Create an instance: `episode = client.Episode`
 #### Example: Load
 
 ```ruby
-# load returns the bare Episode record (raises on error).
+# load returns the ENTITY — call data_get for the Episode record (raises on error).
 episode = client.Episode.load({ "id" => "episode_id" })
 ```
 
@@ -408,14 +409,14 @@ Create an instance: `location = client.Location`
 | `dimension` | `String` |  |
 | `id` | `Integer` |  |
 | `name` | `String` |  |
-| `resident` | `Array` |  |
+| `residents` | `Array` |  |
 | `type` | `String` |  |
 | `url` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Location record (raises on error).
+# load returns the ENTITY — call data_get for the Location record (raises on error).
 location = client.Location.load({ "id" => "location_id" })
 ```
 
@@ -503,11 +504,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-character = client.Character
-character.list()
+location = client.Location
+location.list()
 
-# character.data_get now returns the character data from the last list
-# character.match_get returns the last match criteria
+# location.data_get now returns the location data from the last list
+# location.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

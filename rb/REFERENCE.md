@@ -173,7 +173,7 @@ episode = client.Episode
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `air_date` | `String` | No |  |
-| `character` | `Array` | No |  |
+| `characters` | `Array` | No |  |
 | `created` | `String` | No |  |
 | `episode` | `String` | No |  |
 | `id` | `Integer` | No |  |
@@ -242,7 +242,7 @@ location = client.Location
 | `dimension` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `name` | `String` | No |  |
-| `resident` | `Array` | No |  |
+| `residents` | `Array` | No |  |
 | `type` | `String` | No |  |
 | `url` | `String` | No |  |
 

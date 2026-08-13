@@ -181,7 +181,7 @@ fmt.Println(episode.GetName()) // "episode"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `air_date` | `string` | No |  |
-| `character` | `[]any` | No |  |
+| `characters` | `[]any` | No |  |
 | `created` | `string` | No |  |
 | `episode` | `string` | No |  |
 | `id` | `int` | No |  |
@@ -253,7 +253,7 @@ fmt.Println(location.GetName()) // "location"
 | `dimension` | `string` | No |  |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
-| `resident` | `[]any` | No |  |
+| `residents` | `[]any` | No |  |
 | `type` | `string` | No |  |
 | `url` | `string` | No |  |
 

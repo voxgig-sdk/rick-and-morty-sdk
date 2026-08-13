@@ -115,11 +115,11 @@ function episode_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["RICKANDMORTY_TEST_EPISODE_ENTID"] = {},
-    ["RICKANDMORTY_TEST_LIVE"] = "FALSE",
+    ["RICK_AND_MORTY_TEST_EPISODE_ENTID"] = {},
+    ["RICK_AND_MORTY_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["RICKANDMORTY_TEST_LIVE"] == "TRUE"
+  local live = env["RICK_AND_MORTY_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

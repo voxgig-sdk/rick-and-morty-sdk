@@ -23,8 +23,8 @@ module RickAndMortyTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("RICKANDMORTY_TEST_LIVE")
-    override = getenv("RICKANDMORTY_TEST_OVERRIDE")
+    live = getenv("RICK_AND_MORTY_TEST_LIVE")
+    override = getenv("RICK_AND_MORTY_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module RickAndMortyTestRunner
       end
     end
 
-    explain = getenv("RICKANDMORTY_TEST_EXPLAIN")
-    m["RICKANDMORTY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("RICK_AND_MORTY_TEST_EXPLAIN")
+    m["RICK_AND_MORTY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'RickAndMorty',
   }
 
 
@@ -206,6 +206,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/character",
               "parts": [
@@ -249,6 +250,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/character/{id}",
               "parts": [
@@ -285,7 +287,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "character",
+          "name": "characters",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -363,6 +365,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/episode",
               "parts": [
@@ -403,6 +406,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/episode/{id}",
               "parts": [
@@ -460,7 +464,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "resident",
+          "name": "residents",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 4
@@ -525,6 +529,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/location",
               "parts": [
@@ -566,6 +571,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/location/{id}",
               "parts": [

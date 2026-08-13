@@ -39,7 +39,7 @@
 
 ---@class Episode
 ---@field air_date? string
----@field character? table
+---@field characters? table
 ---@field created? string
 ---@field episode? string
 ---@field id? number
@@ -51,7 +51,7 @@
 
 ---@class EpisodeListMatch
 ---@field air_date? string
----@field character? table
+---@field characters? table
 ---@field created? string
 ---@field episode? string
 ---@field id? number
@@ -63,7 +63,7 @@
 ---@field dimension? string
 ---@field id? number
 ---@field name? string
----@field resident? table
+---@field residents? table
 ---@field type? string
 ---@field url? string
 
@@ -75,7 +75,7 @@
 ---@field dimension? string
 ---@field id? number
 ---@field name? string
----@field resident? table
+---@field residents? table
 ---@field type? string
 ---@field url? string
 

@@ -11,7 +11,7 @@ main: kit: entity: episode: {
       type: "`$STRING`"
     }
     {
-      name: "character"
+      name: "characters"
       req: false
       type: "`$ARRAY`"
     }

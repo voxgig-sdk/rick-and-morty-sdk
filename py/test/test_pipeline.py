@@ -16,11 +16,11 @@
 import pytest
 
 from rickandmorty_sdk import RickAndMortySDK
-from core.error import RickAndMortyError
-from core.result import RickAndMortyResult
-from core.response import RickAndMortyResponse
-from core.spec import RickAndMortySpec
-from feature.base_feature import RickAndMortyBaseFeature
+from rickandmorty_sdk.core.error import RickAndMortyError
+from rickandmorty_sdk.core.result import RickAndMortyResult
+from rickandmorty_sdk.core.response import RickAndMortyResponse
+from rickandmorty_sdk.core.spec import RickAndMortySpec
+from rickandmorty_sdk.feature.base_feature import RickAndMortyBaseFeature
 
 
 def _client():

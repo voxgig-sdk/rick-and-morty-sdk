@@ -75,12 +75,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-characters, err := client.Character(nil).List(nil, nil)
+locations, err := client.Location(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = characters
+_ = locations
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-character, err := client.Character(nil).List(
+location, err := client.Location(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(character) // the returned mock data
+fmt.Println(location) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -293,7 +293,7 @@ API path: `/character`
 | Field | Description |
 | --- | --- |
 | `"air_date"` |  |
-| `"character"` |  |
+| `"characters"` |  |
 | `"created"` |  |
 | `"episode"` |  |
 | `"id"` |  |
@@ -312,7 +312,7 @@ API path: `/episode`
 | `"dimension"` |  |
 | `"id"` |  |
 | `"name"` |  |
-| `"resident"` |  |
+| `"residents"` |  |
 | `"type"` |  |
 | `"url"` |  |
 
@@ -390,7 +390,7 @@ Create an instance: `episode := client.Episode(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `air_date` | `string` |  |
-| `character` | `[]any` |  |
+| `characters` | `[]any` |  |
 | `created` | `string` |  |
 | `episode` | `string` |  |
 | `id` | `int` |  |
@@ -437,7 +437,7 @@ Create an instance: `location := client.Location(nil)`
 | `dimension` | `string` |  |
 | `id` | `int` |  |
 | `name` | `string` |  |
-| `resident` | `[]any` |  |
+| `residents` | `[]any` |  |
 | `type` | `string` |  |
 | `url` | `string` |  |
 
@@ -535,11 +535,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-character := client.Character(nil)
-character.List(nil, nil)
+location := client.Location(nil)
+location.List(nil, nil)
 
-// character.Data() now returns the character data from the last list
-// character.Match() returns the last match criteria
+// location.Data() now returns the location data from the last list
+// location.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ RickAndMortyUtility::setRegistrar(function (RickAndMortyUtility $u): void {
     $u->prepare_params = [RickAndMortyPrepareParams::class, 'call'];
     $u->prepare_path = [RickAndMortyPreparePath::class, 'call'];
     $u->prepare_query = [RickAndMortyPrepareQuery::class, 'call'];
+    $u->graphql_body = [RickAndMortyGraphql::class, 'body'];
+    $u->graphql_errors = [RickAndMortyGraphql::class, 'errors'];
     $u->result_basic = [RickAndMortyResultBasic::class, 'call'];
     $u->result_body = [RickAndMortyResultBody::class, 'call'];
     $u->result_headers = [RickAndMortyResultHeaders::class, 'call'];

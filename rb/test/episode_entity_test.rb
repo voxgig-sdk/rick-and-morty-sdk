@@ -62,7 +62,7 @@ class EpisodeEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set RICKANDMORTY_TEST_EPISODE_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set RICK_AND_MORTY_TEST_EPISODE_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -87,7 +87,7 @@ class EpisodeEntityTest < Minitest::Test
       "id" => episode_ref01_data["id"],
     }
     episode_ref01_data_dt0_loaded = episode_ref01_ent.load(episode_ref01_match_dt0, nil)
-    episode_ref01_data_dt0_load_result = Helpers.to_map(episode_ref01_data_dt0_loaded)
+    episode_ref01_data_dt0_load_result = Helpers.to_map(episode_ref01_data_dt0_loaded.respond_to?(:data_get) ? episode_ref01_data_dt0_loaded.data_get : episode_ref01_data_dt0_loaded)
     assert !episode_ref01_data_dt0_load_result.nil?
     assert_equal episode_ref01_data_dt0_load_result["id"], episode_ref01_data["id"]
 
@@ -120,22 +120,22 @@ def episode_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["RICKANDMORTY_TEST_EPISODE_ENTID"]
+  entid_env_raw = ENV["RICK_AND_MORTY_TEST_EPISODE_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "RICKANDMORTY_TEST_EPISODE_ENTID" => idmap,
-    "RICKANDMORTY_TEST_LIVE" => "FALSE",
-    "RICKANDMORTY_TEST_EXPLAIN" => "FALSE",
+    "RICK_AND_MORTY_TEST_EPISODE_ENTID" => idmap,
+    "RICK_AND_MORTY_TEST_LIVE" => "FALSE",
+    "RICK_AND_MORTY_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["RICKANDMORTY_TEST_EPISODE_ENTID"])
+    env["RICK_AND_MORTY_TEST_EPISODE_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["RICKANDMORTY_TEST_LIVE"] == "TRUE"
+  if env["RICK_AND_MORTY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -144,13 +144,13 @@ def episode_basic_setup(extra)
     client = RickAndMortySDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["RICKANDMORTY_TEST_LIVE"] == "TRUE"
+  live = env["RICK_AND_MORTY_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["RICKANDMORTY_TEST_EXPLAIN"] == "TRUE",
+    explain: env["RICK_AND_MORTY_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

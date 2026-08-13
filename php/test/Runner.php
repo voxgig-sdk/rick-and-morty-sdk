@@ -43,8 +43,8 @@ class RickAndMortyTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('RICKANDMORTY_TEST_LIVE');
-        $override = self::getenv('RICKANDMORTY_TEST_OVERRIDE');
+        $live = self::getenv('RICK_AND_MORTY_TEST_LIVE');
+        $override = self::getenv('RICK_AND_MORTY_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class RickAndMortyTestRunner
             }
         }
 
-        $explain = self::getenv('RICKANDMORTY_TEST_EXPLAIN');
+        $explain = self::getenv('RICK_AND_MORTY_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['RICKANDMORTY_TEST_EXPLAIN'] = $explain;
+            $m['RICK_AND_MORTY_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Character record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Character record (throws on error).
     $character = $client->Character()->load(["id" => "example_id"]);
     print_r($character);
 } catch (\Throwable $err) {
@@ -65,7 +65,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $characters = $client->Character()->list();
+    $locations = $client->Location()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -137,12 +137,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = RickAndMortySDK::test([
-    "entity" => ["character" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["location" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
-$character = $client->Character()->list();
-print_r($character);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$location = $client->Location()->list();
+print_r($location);
 ```
 
 ### Use a custom fetch function
@@ -242,7 +243,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -286,7 +287,7 @@ API path: `/character`
 | Field | Description |
 | --- | --- |
 | `air_date` |  |
-| `character` |  |
+| `characters` |  |
 | `created` |  |
 | `episode` |  |
 | `id` |  |
@@ -305,7 +306,7 @@ API path: `/episode`
 | `dimension` |  |
 | `id` |  |
 | `name` |  |
-| `resident` |  |
+| `residents` |  |
 | `type` |  |
 | `url` |  |
 
@@ -349,7 +350,7 @@ Create an instance: `$character = $client->Character();`
 #### Example: Load
 
 ```php
-// load() returns the bare Character record (throws on error).
+// load() returns the ENTITY — call data_get() for the Character record (throws on error).
 $character = $client->Character()->load(["id" => "character_id"]);
 ```
 
@@ -377,7 +378,7 @@ Create an instance: `$episode = $client->Episode();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `air_date` | `string` |  |
-| `character` | `array` |  |
+| `characters` | `array` |  |
 | `created` | `string` |  |
 | `episode` | `string` |  |
 | `id` | `int` |  |
@@ -387,7 +388,7 @@ Create an instance: `$episode = $client->Episode();`
 #### Example: Load
 
 ```php
-// load() returns the bare Episode record (throws on error).
+// load() returns the ENTITY — call data_get() for the Episode record (throws on error).
 $episode = $client->Episode()->load(["id" => "episode_id"]);
 ```
 
@@ -418,14 +419,14 @@ Create an instance: `$location = $client->Location();`
 | `dimension` | `string` |  |
 | `id` | `int` |  |
 | `name` | `string` |  |
-| `resident` | `array` |  |
+| `residents` | `array` |  |
 | `type` | `string` |  |
 | `url` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Location record (throws on error).
+// load() returns the ENTITY — call data_get() for the Location record (throws on error).
 $location = $client->Location()->load(["id" => "location_id"]);
 ```
 
@@ -513,11 +514,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$character = $client->Character();
-$character->list();
+$location = $client->Location();
+$location->list();
 
-// $character->data_get() now returns the character data from the last list
-// $character->match_get() returns the last match criteria
+// $location->data_get() now returns the location data from the last list
+// $location->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

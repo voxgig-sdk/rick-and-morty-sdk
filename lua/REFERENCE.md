@@ -170,7 +170,7 @@ local episode = client:Episode(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `air_date` | `string` | No |  |
-| `character` | `table` | No |  |
+| `characters` | `table` | No |  |
 | `created` | `string` | No |  |
 | `episode` | `string` | No |  |
 | `id` | `number` | No |  |
@@ -239,7 +239,7 @@ local location = client:Location(nil)
 | `dimension` | `string` | No |  |
 | `id` | `number` | No |  |
 | `name` | `string` | No |  |
-| `resident` | `table` | No |  |
+| `residents` | `table` | No |  |
 | `type` | `string` | No |  |
 | `url` | `string` | No |  |
 
