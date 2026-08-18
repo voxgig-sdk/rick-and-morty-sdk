@@ -40,7 +40,7 @@ class RickAndMortySDK
         $utility = new RickAndMortyUtility();
         $this->_utility = $utility;
 
-        $config = RickAndMortyConfig::make_config();
+        $config = RickAndMortyConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

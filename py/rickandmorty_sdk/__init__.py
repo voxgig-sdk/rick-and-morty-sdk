@@ -23,8 +23,8 @@ class RickAndMortySDK:
         utility = RickAndMortyUtility()
         self._utility = utility
 
-        from rickandmorty_sdk.config import make_config
-        config = make_config()
+        from rickandmorty_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

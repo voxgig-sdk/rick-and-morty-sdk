@@ -28,7 +28,7 @@ class RickAndMortySDK
     utility = RickAndMortyUtility.new
     @_utility = utility
 
-    config = RickAndMortyConfig.make_config
+    config = RickAndMortyConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
