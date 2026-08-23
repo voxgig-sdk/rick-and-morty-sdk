@@ -101,18 +101,18 @@ character = client.Character
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | `String` | No |  |
-| `episode` | `Array` | No |  |
-| `gender` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `image` | `String` | No |  |
+| `created` | `String` | No | Time at which the character was created in the database |
+| `episode` | `Array` | No | List of episodes in which this character appeared |
+| `gender` | `String` | No | The gender of the character |
+| `id` | `Integer` | No | The id of the character |
+| `image` | `String` | No | Link to the character's image |
 | `location` | `Hash` | No |  |
-| `name` | `String` | No |  |
+| `name` | `String` | No | The name of the character |
 | `origin` | `Hash` | No |  |
-| `species` | `String` | No |  |
-| `status` | `String` | No |  |
-| `type` | `String` | No |  |
-| `url` | `String` | No |  |
+| `species` | `String` | No | The species of the character |
+| `status` | `String` | No | The status of the character |
+| `type` | `String` | No | The type or subspecies of the character |
+| `url` | `String` | No | Link to the character's own URL endpoint |
 
 ### Operations
 
@@ -172,13 +172,13 @@ episode = client.Episode
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `air_date` | `String` | No |  |
-| `characters` | `Array` | No |  |
-| `created` | `String` | No |  |
-| `episode` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `name` | `String` | No |  |
-| `url` | `String` | No |  |
+| `air_date` | `String` | No | The air date of the episode |
+| `characters` | `Array` | No | List of characters who have been seen in this episode |
+| `created` | `String` | No | Time at which the episode was created in the database |
+| `episode` | `String` | No | The code of the episode (e.g., S01E01) |
+| `id` | `Integer` | No | The id of the episode |
+| `name` | `String` | No | The name of the episode |
+| `url` | `String` | No | Link to the episode's own URL endpoint |
 
 ### Operations
 
@@ -238,13 +238,13 @@ location = client.Location
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | `String` | No |  |
-| `dimension` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `name` | `String` | No |  |
-| `residents` | `Array` | No |  |
-| `type` | `String` | No |  |
-| `url` | `String` | No |  |
+| `created` | `String` | No | Time at which the location was created in the database |
+| `dimension` | `String` | No | The dimension in which the location is located |
+| `id` | `Integer` | No | The id of the location |
+| `name` | `String` | No | The name of the location |
+| `residents` | `Array` | No | List of characters who have been last seen in this location |
+| `type` | `String` | No | The type of the location |
+| `url` | `String` | No | Link to the location's own URL endpoint |
 
 ### Operations
 

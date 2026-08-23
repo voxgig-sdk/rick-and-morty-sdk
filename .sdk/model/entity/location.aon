@@ -1,6 +1,6 @@
-# Entity: character
+# Entity: location
 
-main: kit: entity: character: {
+main: kit: entity: location: {
 
   alias: field: {}
 
@@ -8,61 +8,43 @@ main: kit: entity: character: {
     {
       name: "created"
       req: false
+      short: "Time at which the location was created in the database"
       type: "`$STRING`"
     }
     {
-      name: "episode"
+      name: "dimension"
       req: false
-      type: "`$ARRAY`"
-    }
-    {
-      name: "gender"
-      req: false
+      short: "The dimension in which the location is located"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "The id of the location"
       type: "`$INTEGER`"
-    }
-    {
-      name: "image"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "location"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "name"
       req: false
+      short: "The name of the location"
       type: "`$STRING`"
     }
     {
-      name: "origin"
+      name: "residents"
       req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "species"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "status"
-      req: false
-      type: "`$STRING`"
+      short: "List of characters who have been last seen in this location"
+      type: "`$ARRAY`"
     }
     {
       name: "type"
       req: false
+      short: "The type of the location"
       type: "`$STRING`"
     }
     {
       name: "url"
       req: false
+      short: "Link to the location's own URL endpoint"
       type: "`$STRING`"
     }
   ]
@@ -72,7 +54,7 @@ main: kit: entity: character: {
     name: "id"
   }
 
-  name: "character"
+  name: "location"
   op: {
     list: {
       name: "list"
@@ -82,8 +64,8 @@ main: kit: entity: character: {
             query: [
               {
                 kind: "query"
-                name: "gender"
-                orig: "gender"
+                name: "dimension"
+                orig: "dimension"
                 reqd: false
                 type: "`$STRING`"
               }
@@ -104,20 +86,6 @@ main: kit: entity: character: {
               }
               {
                 kind: "query"
-                name: "species"
-                orig: "species"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "status"
-                orig: "status"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
                 name: "type"
                 orig: "type"
                 reqd: false
@@ -126,17 +94,15 @@ main: kit: entity: character: {
             ]
           }
           method: "GET"
-          orig: "/character"
+          orig: "/location"
           parts: [
-            "character"
+            "location"
           ]
           select: {
             exist: [
-              "gender"
+              "dimension"
               "name"
               "page"
-              "species"
-              "status"
               "type"
             ]
           }
@@ -163,9 +129,9 @@ main: kit: entity: character: {
             ]
           }
           method: "GET"
-          orig: "/character/{id}"
+          orig: "/location/{id}"
           parts: [
-            "character"
+            "location"
             "{id}"
           ]
           select: {

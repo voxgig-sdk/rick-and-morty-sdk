@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "RickAndMorty",
+            "slug": "rick-and-morty",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -52,22 +55,27 @@ def make_config():
         "fields": [
           {
             "name": "created",
+            "short": "Time at which the character was created in the database",
             "type": "`$STRING`",
           },
           {
             "name": "episode",
+            "short": "List of episodes in which this character appeared",
             "type": "`$ARRAY`",
           },
           {
             "name": "gender",
+            "short": "The gender of the character",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "The id of the character",
             "type": "`$INTEGER`",
           },
           {
             "name": "image",
+            "short": "Link to the character's image",
             "type": "`$STRING`",
           },
           {
@@ -76,6 +84,7 @@ def make_config():
           },
           {
             "name": "name",
+            "short": "The name of the character",
             "type": "`$STRING`",
           },
           {
@@ -84,18 +93,22 @@ def make_config():
           },
           {
             "name": "species",
+            "short": "The species of the character",
             "type": "`$STRING`",
           },
           {
             "name": "status",
+            "short": "The status of the character",
             "type": "`$STRING`",
           },
           {
             "name": "type",
+            "short": "The type or subspecies of the character",
             "type": "`$STRING`",
           },
           {
             "name": "url",
+            "short": "Link to the character's own URL endpoint",
             "type": "`$STRING`",
           },
         ],
@@ -214,30 +227,37 @@ def make_config():
         "fields": [
           {
             "name": "air_date",
+            "short": "The air date of the episode",
             "type": "`$STRING`",
           },
           {
             "name": "characters",
+            "short": "List of characters who have been seen in this episode",
             "type": "`$ARRAY`",
           },
           {
             "name": "created",
+            "short": "Time at which the episode was created in the database",
             "type": "`$STRING`",
           },
           {
             "name": "episode",
+            "short": "The code of the episode (e.g., S01E01)",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "The id of the episode",
             "type": "`$INTEGER`",
           },
           {
             "name": "name",
+            "short": "The name of the episode",
             "type": "`$STRING`",
           },
           {
             "name": "url",
+            "short": "Link to the episode's own URL endpoint",
             "type": "`$STRING`",
           },
         ],
@@ -335,30 +355,37 @@ def make_config():
         "fields": [
           {
             "name": "created",
+            "short": "Time at which the location was created in the database",
             "type": "`$STRING`",
           },
           {
             "name": "dimension",
+            "short": "The dimension in which the location is located",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "The id of the location",
             "type": "`$INTEGER`",
           },
           {
             "name": "name",
+            "short": "The name of the location",
             "type": "`$STRING`",
           },
           {
             "name": "residents",
+            "short": "List of characters who have been last seen in this location",
             "type": "`$ARRAY`",
           },
           {
             "name": "type",
+            "short": "The type of the location",
             "type": "`$STRING`",
           },
           {
             "name": "url",
+            "short": "Link to the location's own URL endpoint",
             "type": "`$STRING`",
           },
         ],

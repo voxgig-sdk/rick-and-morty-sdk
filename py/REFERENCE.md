@@ -95,18 +95,18 @@ character = client.Character()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | `str` | No |  |
-| `episode` | `list` | No |  |
-| `gender` | `str` | No |  |
-| `id` | `int` | No |  |
-| `image` | `str` | No |  |
+| `created` | `str` | No | Time at which the character was created in the database |
+| `episode` | `list` | No | List of episodes in which this character appeared |
+| `gender` | `str` | No | The gender of the character |
+| `id` | `int` | No | The id of the character |
+| `image` | `str` | No | Link to the character's image |
 | `location` | `dict` | No |  |
-| `name` | `str` | No |  |
+| `name` | `str` | No | The name of the character |
 | `origin` | `dict` | No |  |
-| `species` | `str` | No |  |
-| `status` | `str` | No |  |
-| `type` | `str` | No |  |
-| `url` | `str` | No |  |
+| `species` | `str` | No | The species of the character |
+| `status` | `str` | No | The status of the character |
+| `type` | `str` | No | The type or subspecies of the character |
+| `url` | `str` | No | Link to the character's own URL endpoint |
 
 ### Operations
 
@@ -167,13 +167,13 @@ episode = client.Episode()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `air_date` | `str` | No |  |
-| `characters` | `list` | No |  |
-| `created` | `str` | No |  |
-| `episode` | `str` | No |  |
-| `id` | `int` | No |  |
-| `name` | `str` | No |  |
-| `url` | `str` | No |  |
+| `air_date` | `str` | No | The air date of the episode |
+| `characters` | `list` | No | List of characters who have been seen in this episode |
+| `created` | `str` | No | Time at which the episode was created in the database |
+| `episode` | `str` | No | The code of the episode (e.g., S01E01) |
+| `id` | `int` | No | The id of the episode |
+| `name` | `str` | No | The name of the episode |
+| `url` | `str` | No | Link to the episode's own URL endpoint |
 
 ### Operations
 
@@ -234,13 +234,13 @@ location = client.Location()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | `str` | No |  |
-| `dimension` | `str` | No |  |
-| `id` | `int` | No |  |
-| `name` | `str` | No |  |
-| `residents` | `list` | No |  |
-| `type` | `str` | No |  |
-| `url` | `str` | No |  |
+| `created` | `str` | No | Time at which the location was created in the database |
+| `dimension` | `str` | No | The dimension in which the location is located |
+| `id` | `int` | No | The id of the location |
+| `name` | `str` | No | The name of the location |
+| `residents` | `list` | No | List of characters who have been last seen in this location |
+| `type` | `str` | No | The type of the location |
+| `url` | `str` | No | Link to the location's own URL endpoint |
 
 ### Operations
 

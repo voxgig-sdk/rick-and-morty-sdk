@@ -258,18 +258,18 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `created` |  |
-| `episode` |  |
-| `gender` |  |
-| `id` |  |
-| `image` |  |
+| `created` | Time at which the character was created in the database |
+| `episode` | List of episodes in which this character appeared |
+| `gender` | The gender of the character |
+| `id` | The id of the character |
+| `image` | Link to the character's image |
 | `location` |  |
-| `name` |  |
+| `name` | The name of the character |
 | `origin` |  |
-| `species` |  |
-| `status` |  |
-| `type` |  |
-| `url` |  |
+| `species` | The species of the character |
+| `status` | The status of the character |
+| `type` | The type or subspecies of the character |
+| `url` | Link to the character's own URL endpoint |
 
 Operations: List, Load.
 
@@ -279,13 +279,13 @@ API path: `/character`
 
 | Field | Description |
 | --- | --- |
-| `air_date` |  |
-| `characters` |  |
-| `created` |  |
-| `episode` |  |
-| `id` |  |
-| `name` |  |
-| `url` |  |
+| `air_date` | The air date of the episode |
+| `characters` | List of characters who have been seen in this episode |
+| `created` | Time at which the episode was created in the database |
+| `episode` | The code of the episode (e.g., S01E01) |
+| `id` | The id of the episode |
+| `name` | The name of the episode |
+| `url` | Link to the episode's own URL endpoint |
 
 Operations: List, Load.
 
@@ -295,13 +295,13 @@ API path: `/episode`
 
 | Field | Description |
 | --- | --- |
-| `created` |  |
-| `dimension` |  |
-| `id` |  |
-| `name` |  |
-| `residents` |  |
-| `type` |  |
-| `url` |  |
+| `created` | Time at which the location was created in the database |
+| `dimension` | The dimension in which the location is located |
+| `id` | The id of the location |
+| `name` | The name of the location |
+| `residents` | List of characters who have been last seen in this location |
+| `type` | The type of the location |
+| `url` | Link to the location's own URL endpoint |
 
 Operations: List, Load.
 
@@ -327,18 +327,18 @@ Create an instance: `character = client.Character()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | `str` |  |
-| `episode` | `list` |  |
-| `gender` | `str` |  |
-| `id` | `int` |  |
-| `image` | `str` |  |
+| `created` | `str` | Time at which the character was created in the database |
+| `episode` | `list` | List of episodes in which this character appeared |
+| `gender` | `str` | The gender of the character |
+| `id` | `int` | The id of the character |
+| `image` | `str` | Link to the character's image |
 | `location` | `dict` |  |
-| `name` | `str` |  |
+| `name` | `str` | The name of the character |
 | `origin` | `dict` |  |
-| `species` | `str` |  |
-| `status` | `str` |  |
-| `type` | `str` |  |
-| `url` | `str` |  |
+| `species` | `str` | The species of the character |
+| `status` | `str` | The status of the character |
+| `type` | `str` | The type or subspecies of the character |
+| `url` | `str` | Link to the character's own URL endpoint |
 
 #### Example: Load
 
@@ -368,13 +368,13 @@ Create an instance: `episode = client.Episode()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `air_date` | `str` |  |
-| `characters` | `list` |  |
-| `created` | `str` |  |
-| `episode` | `str` |  |
-| `id` | `int` |  |
-| `name` | `str` |  |
-| `url` | `str` |  |
+| `air_date` | `str` | The air date of the episode |
+| `characters` | `list` | List of characters who have been seen in this episode |
+| `created` | `str` | Time at which the episode was created in the database |
+| `episode` | `str` | The code of the episode (e.g., S01E01) |
+| `id` | `int` | The id of the episode |
+| `name` | `str` | The name of the episode |
+| `url` | `str` | Link to the episode's own URL endpoint |
 
 #### Example: Load
 
@@ -404,13 +404,13 @@ Create an instance: `location = client.Location()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | `str` |  |
-| `dimension` | `str` |  |
-| `id` | `int` |  |
-| `name` | `str` |  |
-| `residents` | `list` |  |
-| `type` | `str` |  |
-| `url` | `str` |  |
+| `created` | `str` | Time at which the location was created in the database |
+| `dimension` | `str` | The dimension in which the location is located |
+| `id` | `int` | The id of the location |
+| `name` | `str` | The name of the location |
+| `residents` | `list` | List of characters who have been last seen in this location |
+| `type` | `str` | The type of the location |
+| `url` | `str` | Link to the location's own URL endpoint |
 
 #### Example: Load
 

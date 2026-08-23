@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -304,18 +304,18 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `created` |  |
-| `episode` |  |
-| `gender` |  |
-| `id` |  |
-| `image` |  |
+| `created` | Time at which the character was created in the database |
+| `episode` | List of episodes in which this character appeared |
+| `gender` | The gender of the character |
+| `id` | The id of the character |
+| `image` | Link to the character's image |
 | `location` |  |
-| `name` |  |
+| `name` | The name of the character |
 | `origin` |  |
-| `species` |  |
-| `status` |  |
-| `type` |  |
-| `url` |  |
+| `species` | The species of the character |
+| `status` | The status of the character |
+| `type` | The type or subspecies of the character |
+| `url` | Link to the character's own URL endpoint |
 
 Operations: list, load.
 
@@ -325,13 +325,13 @@ API path: `/character`
 
 | Field | Description |
 | --- | --- |
-| `air_date` |  |
-| `characters` |  |
-| `created` |  |
-| `episode` |  |
-| `id` |  |
-| `name` |  |
-| `url` |  |
+| `air_date` | The air date of the episode |
+| `characters` | List of characters who have been seen in this episode |
+| `created` | Time at which the episode was created in the database |
+| `episode` | The code of the episode (e.g., S01E01) |
+| `id` | The id of the episode |
+| `name` | The name of the episode |
+| `url` | Link to the episode's own URL endpoint |
 
 Operations: list, load.
 
@@ -341,13 +341,13 @@ API path: `/episode`
 
 | Field | Description |
 | --- | --- |
-| `created` |  |
-| `dimension` |  |
-| `id` |  |
-| `name` |  |
-| `residents` |  |
-| `type` |  |
-| `url` |  |
+| `created` | Time at which the location was created in the database |
+| `dimension` | The dimension in which the location is located |
+| `id` | The id of the location |
+| `name` | The name of the location |
+| `residents` | List of characters who have been last seen in this location |
+| `type` | The type of the location |
+| `url` | Link to the location's own URL endpoint |
 
 Operations: list, load.
 
@@ -373,18 +373,18 @@ Create an instance: `const character = client.Character()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | `string` |  |
-| `episode` | `any[]` |  |
-| `gender` | `string` |  |
-| `id` | `number` |  |
-| `image` | `string` |  |
+| `created` | `string` | Time at which the character was created in the database |
+| `episode` | `any[]` | List of episodes in which this character appeared |
+| `gender` | `string` | The gender of the character |
+| `id` | `number` | The id of the character |
+| `image` | `string` | Link to the character's image |
 | `location` | `Record<string, any>` |  |
-| `name` | `string` |  |
+| `name` | `string` | The name of the character |
 | `origin` | `Record<string, any>` |  |
-| `species` | `string` |  |
-| `status` | `string` |  |
-| `type` | `string` |  |
-| `url` | `string` |  |
+| `species` | `string` | The species of the character |
+| `status` | `string` | The status of the character |
+| `type` | `string` | The type or subspecies of the character |
+| `url` | `string` | Link to the character's own URL endpoint |
 
 #### Example: Load
 
@@ -414,13 +414,13 @@ Create an instance: `const episode = client.Episode()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `air_date` | `string` |  |
-| `characters` | `any[]` |  |
-| `created` | `string` |  |
-| `episode` | `string` |  |
-| `id` | `number` |  |
-| `name` | `string` |  |
-| `url` | `string` |  |
+| `air_date` | `string` | The air date of the episode |
+| `characters` | `any[]` | List of characters who have been seen in this episode |
+| `created` | `string` | Time at which the episode was created in the database |
+| `episode` | `string` | The code of the episode (e.g., S01E01) |
+| `id` | `number` | The id of the episode |
+| `name` | `string` | The name of the episode |
+| `url` | `string` | Link to the episode's own URL endpoint |
 
 #### Example: Load
 
@@ -450,13 +450,13 @@ Create an instance: `const location = client.Location()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created` | `string` |  |
-| `dimension` | `string` |  |
-| `id` | `number` |  |
-| `name` | `string` |  |
-| `residents` | `any[]` |  |
-| `type` | `string` |  |
-| `url` | `string` |  |
+| `created` | `string` | Time at which the location was created in the database |
+| `dimension` | `string` | The dimension in which the location is located |
+| `id` | `number` | The id of the location |
+| `name` | `string` | The name of the location |
+| `residents` | `any[]` | List of characters who have been last seen in this location |
+| `type` | `string` | The type of the location |
+| `url` | `string` | Link to the location's own URL endpoint |
 
 #### Example: Load
 

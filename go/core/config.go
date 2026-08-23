@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "RickAndMorty",
+			"slug": "rick-and-morty",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -35,22 +38,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "created",
+						"short": "Time at which the character was created in the database",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "episode",
+						"short": "List of episodes in which this character appeared",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "gender",
+						"short": "The gender of the character",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "The id of the character",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "image",
+						"short": "Link to the character's image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -59,6 +67,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of the character",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -67,18 +76,22 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "species",
+						"short": "The species of the character",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status",
+						"short": "The status of the character",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "The type or subspecies of the character",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "Link to the character's own URL endpoint",
 						"type": "`$STRING`",
 					},
 				},
@@ -197,30 +210,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "air_date",
+						"short": "The air date of the episode",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "characters",
+						"short": "List of characters who have been seen in this episode",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "created",
+						"short": "Time at which the episode was created in the database",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "episode",
+						"short": "The code of the episode (e.g., S01E01)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "The id of the episode",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of the episode",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "Link to the episode's own URL endpoint",
 						"type": "`$STRING`",
 					},
 				},
@@ -318,30 +338,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "created",
+						"short": "Time at which the location was created in the database",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "dimension",
+						"short": "The dimension in which the location is located",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "The id of the location",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of the location",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "residents",
+						"short": "List of characters who have been last seen in this location",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "The type of the location",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "Link to the location's own URL endpoint",
 						"type": "`$STRING`",
 					},
 				},

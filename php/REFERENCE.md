@@ -100,18 +100,18 @@ $character = $client->Character();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | `string` | No |  |
-| `episode` | `array` | No |  |
-| `gender` | `string` | No |  |
-| `id` | `int` | No |  |
-| `image` | `string` | No |  |
+| `created` | `string` | No | Time at which the character was created in the database |
+| `episode` | `array` | No | List of episodes in which this character appeared |
+| `gender` | `string` | No | The gender of the character |
+| `id` | `int` | No | The id of the character |
+| `image` | `string` | No | Link to the character's image |
 | `location` | `array` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | The name of the character |
 | `origin` | `array` | No |  |
-| `species` | `string` | No |  |
-| `status` | `string` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `species` | `string` | No | The species of the character |
+| `status` | `string` | No | The status of the character |
+| `type` | `string` | No | The type or subspecies of the character |
+| `url` | `string` | No | Link to the character's own URL endpoint |
 
 ### Operations
 
@@ -171,13 +171,13 @@ $episode = $client->Episode();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `air_date` | `string` | No |  |
-| `characters` | `array` | No |  |
-| `created` | `string` | No |  |
-| `episode` | `string` | No |  |
-| `id` | `int` | No |  |
-| `name` | `string` | No |  |
-| `url` | `string` | No |  |
+| `air_date` | `string` | No | The air date of the episode |
+| `characters` | `array` | No | List of characters who have been seen in this episode |
+| `created` | `string` | No | Time at which the episode was created in the database |
+| `episode` | `string` | No | The code of the episode (e.g., S01E01) |
+| `id` | `int` | No | The id of the episode |
+| `name` | `string` | No | The name of the episode |
+| `url` | `string` | No | Link to the episode's own URL endpoint |
 
 ### Operations
 
@@ -237,13 +237,13 @@ $location = $client->Location();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created` | `string` | No |  |
-| `dimension` | `string` | No |  |
-| `id` | `int` | No |  |
-| `name` | `string` | No |  |
-| `residents` | `array` | No |  |
-| `type` | `string` | No |  |
-| `url` | `string` | No |  |
+| `created` | `string` | No | Time at which the location was created in the database |
+| `dimension` | `string` | No | The dimension in which the location is located |
+| `id` | `int` | No | The id of the location |
+| `name` | `string` | No | The name of the location |
+| `residents` | `array` | No | List of characters who have been last seen in this location |
+| `type` | `string` | No | The type of the location |
+| `url` | `string` | No | Link to the location's own URL endpoint |
 
 ### Operations
 

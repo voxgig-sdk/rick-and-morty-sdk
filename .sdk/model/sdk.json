@@ -36,30 +36,35 @@
               "active": true,
               "name": "created",
               "req": false,
+              "short": "Time at which the character was created in the database",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "episode",
               "req": false,
+              "short": "List of episodes in which this character appeared",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "gender",
               "req": false,
+              "short": "The gender of the character",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "The id of the character",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "image",
               "req": false,
+              "short": "Link to the character's image",
               "type": "`$STRING`"
             },
             {
@@ -72,6 +77,7 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of the character",
               "type": "`$STRING`"
             },
             {
@@ -84,24 +90,28 @@
               "active": true,
               "name": "species",
               "req": false,
+              "short": "The species of the character",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "The status of the character",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "The type or subspecies of the character",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "Link to the character's own URL endpoint",
               "type": "`$STRING`"
             }
           ],
@@ -245,42 +255,49 @@
               "active": true,
               "name": "air_date",
               "req": false,
+              "short": "The air date of the episode",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "characters",
               "req": false,
+              "short": "List of characters who have been seen in this episode",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "created",
               "req": false,
+              "short": "Time at which the episode was created in the database",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "episode",
               "req": false,
+              "short": "The code of the episode (e.g., S01E01)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "The id of the episode",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of the episode",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "Link to the episode's own URL endpoint",
               "type": "`$STRING`"
             }
           ],
@@ -397,42 +414,49 @@
               "active": true,
               "name": "created",
               "req": false,
+              "short": "Time at which the location was created in the database",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "dimension",
               "req": false,
+              "short": "The dimension in which the location is located",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "The id of the location",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of the location",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "residents",
               "req": false,
+              "short": "List of characters who have been last seen in this location",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "The type of the location",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "Link to the location's own URL endpoint",
               "type": "`$STRING`"
             }
           ],

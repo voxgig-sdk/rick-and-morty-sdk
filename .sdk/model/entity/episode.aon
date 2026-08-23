@@ -8,36 +8,43 @@ main: kit: entity: episode: {
     {
       name: "air_date"
       req: false
+      short: "The air date of the episode"
       type: "`$STRING`"
     }
     {
       name: "characters"
       req: false
+      short: "List of characters who have been seen in this episode"
       type: "`$ARRAY`"
     }
     {
       name: "created"
       req: false
+      short: "Time at which the episode was created in the database"
       type: "`$STRING`"
     }
     {
       name: "episode"
       req: false
+      short: "The code of the episode (e.g., S01E01)"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "The id of the episode"
       type: "`$INTEGER`"
     }
     {
       name: "name"
       req: false
+      short: "The name of the episode"
       type: "`$STRING`"
     }
     {
       name: "url"
       req: false
+      short: "Link to the episode's own URL endpoint"
       type: "`$STRING`"
     }
   ]
