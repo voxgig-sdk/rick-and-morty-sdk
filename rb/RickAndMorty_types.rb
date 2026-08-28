@@ -72,29 +72,14 @@ CharacterLoadMatch = Struct.new(
 
 # Request payload for Character#list.
 #
-# @!attribute [rw] created
-#   @return [String, nil]
-#
-# @!attribute [rw] episode
-#   @return [Array, nil]
-#
 # @!attribute [rw] gender
 #   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] image
-#   @return [String, nil]
-#
-# @!attribute [rw] location
-#   @return [Hash, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] origin
-#   @return [Hash, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 #
 # @!attribute [rw] species
 #   @return [String, nil]
@@ -104,22 +89,13 @@ CharacterLoadMatch = Struct.new(
 #
 # @!attribute [rw] type
 #   @return [String, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
 CharacterListMatch = Struct.new(
-  :created,
-  :episode,
   :gender,
-  :id,
-  :image,
-  :location,
   :name,
-  :origin,
+  :page,
   :species,
   :status,
   :type,
-  :url,
   keyword_init: true
 )
 
@@ -167,34 +143,18 @@ EpisodeLoadMatch = Struct.new(
 
 # Request payload for Episode#list.
 #
-# @!attribute [rw] air_date
-#   @return [String, nil]
-#
-# @!attribute [rw] characters
-#   @return [Array, nil]
-#
-# @!attribute [rw] created
-#   @return [String, nil]
-#
 # @!attribute [rw] episode
 #   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] url
-#   @return [String, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 EpisodeListMatch = Struct.new(
-  :air_date,
-  :characters,
-  :created,
   :episode,
-  :id,
   :name,
-  :url,
+  :page,
   keyword_init: true
 )
 
@@ -242,34 +202,22 @@ LocationLoadMatch = Struct.new(
 
 # Request payload for Location#list.
 #
-# @!attribute [rw] created
-#   @return [String, nil]
-#
 # @!attribute [rw] dimension
 #   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] residents
-#   @return [Array, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
 LocationListMatch = Struct.new(
-  :created,
   :dimension,
-  :id,
   :name,
-  :residents,
+  :page,
   :type,
-  :url,
   keyword_init: true
 )
 

@@ -24,18 +24,12 @@
 ---@field id string
 
 ---@class CharacterListMatch
----@field created? string
----@field episode? table
 ---@field gender? string
----@field id? number
----@field image? string
----@field location? table
 ---@field name? string
----@field origin? table
+---@field page? number
 ---@field species? string
 ---@field status? string
 ---@field type? string
----@field url? string
 
 ---@class Episode
 ---@field air_date? string
@@ -50,13 +44,9 @@
 ---@field id string
 
 ---@class EpisodeListMatch
----@field air_date? string
----@field characters? table
----@field created? string
 ---@field episode? string
----@field id? number
 ---@field name? string
----@field url? string
+---@field page? number
 
 ---@class Location
 ---@field created? string
@@ -71,13 +61,10 @@
 ---@field id string
 
 ---@class LocationListMatch
----@field created? string
 ---@field dimension? string
----@field id? number
 ---@field name? string
----@field residents? table
+---@field page? number
 ---@field type? string
----@field url? string
 
 local M = {}
 

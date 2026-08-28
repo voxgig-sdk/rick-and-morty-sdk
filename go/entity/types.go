@@ -35,18 +35,12 @@ type CharacterLoadMatch struct {
 
 // CharacterListMatch is the typed request payload for Character.ListTyped.
 type CharacterListMatch struct {
-	Created *string `json:"created,omitempty"`
-	Episode *[]any `json:"episode,omitempty"`
 	Gender *string `json:"gender,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Image *string `json:"image,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Origin *map[string]any `json:"origin,omitempty"`
+	Page *int `json:"page,omitempty"`
 	Species *string `json:"species,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // Episode is the typed data model for the episode entity.
@@ -67,13 +61,9 @@ type EpisodeLoadMatch struct {
 
 // EpisodeListMatch is the typed request payload for Episode.ListTyped.
 type EpisodeListMatch struct {
-	AirDate *string `json:"air_date,omitempty"`
-	Characters *[]any `json:"characters,omitempty"`
-	Created *string `json:"created,omitempty"`
 	Episode *string `json:"episode,omitempty"`
-	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // Location is the typed data model for the location entity.
@@ -94,13 +84,10 @@ type LocationLoadMatch struct {
 
 // LocationListMatch is the typed request payload for Location.ListTyped.
 type LocationListMatch struct {
-	Created *string `json:"created,omitempty"`
 	Dimension *string `json:"dimension,omitempty"`
-	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Residents *[]any `json:"residents,omitempty"`
+	Page *int `json:"page,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

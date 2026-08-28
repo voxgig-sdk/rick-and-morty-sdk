@@ -25,18 +25,12 @@ export interface CharacterLoadMatch {
 }
 
 export interface CharacterListMatch {
-  created?: string
-  episode?: any[]
   gender?: string
-  id?: number
-  image?: string
-  location?: Record<string, any>
   name?: string
-  origin?: Record<string, any>
+  page?: number
   species?: string
   status?: string
   type?: string
-  url?: string
 }
 
 export interface Episode {
@@ -54,13 +48,9 @@ export interface EpisodeLoadMatch {
 }
 
 export interface EpisodeListMatch {
-  air_date?: string
-  characters?: any[]
-  created?: string
   episode?: string
-  id?: number
   name?: string
-  url?: string
+  page?: number
 }
 
 export interface Location {
@@ -78,12 +68,9 @@ export interface LocationLoadMatch {
 }
 
 export interface LocationListMatch {
-  created?: string
   dimension?: string
-  id?: number
   name?: string
-  residents?: any[]
+  page?: number
   type?: string
-  url?: string
 }
 

@@ -36,18 +36,12 @@ class CharacterLoadMatch(TypedDict):
 
 
 class CharacterListMatch(TypedDict, total=False):
-    created: str
-    episode: list
     gender: str
-    id: int
-    image: str
-    location: dict
     name: str
-    origin: dict
+    page: int
     species: str
     status: str
     type: str
-    url: str
 
 
 class Episode(TypedDict, total=False):
@@ -65,13 +59,9 @@ class EpisodeLoadMatch(TypedDict):
 
 
 class EpisodeListMatch(TypedDict, total=False):
-    air_date: str
-    characters: list
-    created: str
     episode: str
-    id: int
     name: str
-    url: str
+    page: int
 
 
 class Location(TypedDict, total=False):
@@ -89,10 +79,7 @@ class LocationLoadMatch(TypedDict):
 
 
 class LocationListMatch(TypedDict, total=False):
-    created: str
     dimension: str
-    id: int
     name: str
-    residents: list
+    page: int
     type: str
-    url: str
