@@ -18,6 +18,7 @@ main: kit: entity: episode: {
       type: "`$ARRAY`"
     }
     {
+      format: "date-time"
       name: "created"
       req: false
       short: "Time at which the episode was created in the database"
@@ -88,8 +89,10 @@ main: kit: entity: episode: {
           }
           method: "GET"
           orig: "/episode"
-          parts: [
-            "episode"
+          segments: [
+            {
+              lit: "episode"
+            }
           ]
           select: {
             exist: [
@@ -122,9 +125,13 @@ main: kit: entity: episode: {
           }
           method: "GET"
           orig: "/episode/{id}"
-          parts: [
-            "episode"
-            "{id}"
+          segments: [
+            {
+              lit: "episode"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

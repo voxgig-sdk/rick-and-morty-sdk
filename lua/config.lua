@@ -34,6 +34,7 @@ local function make_config()
       ["character"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "created",
             ["short"] = "Time at which the character was created in the database",
             ["type"] = "`$STRING`",
@@ -92,6 +93,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "character",
         ["op"] = {
           ["list"] = {
@@ -143,8 +148,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/character",
-                ["parts"] = {
-                  "character",
+                ["segments"] = {
+                  {
+                    ["lit"] = "character",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -159,6 +166,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "character",
                 },
               },
             },
@@ -182,9 +192,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/character/{id}",
-                ["parts"] = {
-                  "character",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "character",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -194,6 +208,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "character",
+                  "{id}",
                 },
               },
             },
@@ -216,6 +234,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "created",
             ["short"] = "Time at which the episode was created in the database",
             ["type"] = "`$STRING`",
@@ -240,6 +259,10 @@ local function make_config()
             ["short"] = "Link to the episode's own URL endpoint",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "episode",
         ["op"] = {
@@ -274,8 +297,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/episode",
-                ["parts"] = {
-                  "episode",
+                ["segments"] = {
+                  {
+                    ["lit"] = "episode",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -287,6 +312,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "episode",
                 },
               },
             },
@@ -310,9 +338,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/episode/{id}",
-                ["parts"] = {
-                  "episode",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "episode",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -322,6 +354,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "episode",
+                  "{id}",
                 },
               },
             },
@@ -334,6 +370,7 @@ local function make_config()
       ["location"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "created",
             ["short"] = "Time at which the location was created in the database",
             ["type"] = "`$STRING`",
@@ -368,6 +405,10 @@ local function make_config()
             ["short"] = "Link to the location's own URL endpoint",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "location",
         ["op"] = {
@@ -408,8 +449,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/location",
-                ["parts"] = {
-                  "location",
+                ["segments"] = {
+                  {
+                    ["lit"] = "location",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -422,6 +465,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "location",
                 },
               },
             },
@@ -445,9 +491,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/location/{id}",
-                ["parts"] = {
-                  "location",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "location",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -457,6 +507,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "location",
+                  "{id}",
                 },
               },
             },

@@ -60,6 +60,7 @@ class RickAndMortyConfig
         'character' => [
           'fields' => [
             [
+              'format' => 'date-time',
               'name' => 'created',
               'short' => 'Time at which the character was created in the database',
               'type' => '`$STRING`',
@@ -118,6 +119,10 @@ class RickAndMortyConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'character',
           'op' => [
             'list' => [
@@ -169,8 +174,10 @@ class RickAndMortyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/character',
-                  'parts' => [
-                    'character',
+                  'segments' => [
+                    [
+                      'lit' => 'character',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -185,6 +192,9 @@ class RickAndMortyConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'character',
                   ],
                 ],
               ],
@@ -208,9 +218,13 @@ class RickAndMortyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/character/{id}',
-                  'parts' => [
-                    'character',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'character',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -220,6 +234,10 @@ class RickAndMortyConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'character',
+                    '{id}',
                   ],
                 ],
               ],
@@ -242,6 +260,7 @@ class RickAndMortyConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'created',
               'short' => 'Time at which the episode was created in the database',
               'type' => '`$STRING`',
@@ -266,6 +285,10 @@ class RickAndMortyConfig
               'short' => 'Link to the episode\'s own URL endpoint',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'episode',
           'op' => [
@@ -300,8 +323,10 @@ class RickAndMortyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/episode',
-                  'parts' => [
-                    'episode',
+                  'segments' => [
+                    [
+                      'lit' => 'episode',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -313,6 +338,9 @@ class RickAndMortyConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'episode',
                   ],
                 ],
               ],
@@ -336,9 +364,13 @@ class RickAndMortyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/episode/{id}',
-                  'parts' => [
-                    'episode',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'episode',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -348,6 +380,10 @@ class RickAndMortyConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'episode',
+                    '{id}',
                   ],
                 ],
               ],
@@ -360,6 +396,7 @@ class RickAndMortyConfig
         'location' => [
           'fields' => [
             [
+              'format' => 'date-time',
               'name' => 'created',
               'short' => 'Time at which the location was created in the database',
               'type' => '`$STRING`',
@@ -394,6 +431,10 @@ class RickAndMortyConfig
               'short' => 'Link to the location\'s own URL endpoint',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'location',
           'op' => [
@@ -434,8 +475,10 @@ class RickAndMortyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/location',
-                  'parts' => [
-                    'location',
+                  'segments' => [
+                    [
+                      'lit' => 'location',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -448,6 +491,9 @@ class RickAndMortyConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'location',
                   ],
                 ],
               ],
@@ -471,9 +517,13 @@ class RickAndMortyConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/location/{id}',
-                  'parts' => [
-                    'location',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'location',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -483,6 +533,10 @@ class RickAndMortyConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'location',
+                    '{id}',
                   ],
                 ],
               ],
