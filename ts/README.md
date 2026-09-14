@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { RickAndMortySDK } from '@voxgig-sdk/rick-and-morty'
+import { RickAndMortySDK } from '@voxgig-sdk/rick-and-morty-sdk'
 
 const client = new RickAndMortySDK()
 ```
@@ -553,7 +553,7 @@ rick-and-morty/
 Import the SDK from the package root:
 
 ```ts
-import { RickAndMortySDK } from '@voxgig-sdk/rick-and-morty'
+import { RickAndMortySDK } from '@voxgig-sdk/rick-and-morty-sdk'
 ```
 
 ### Entity state

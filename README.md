@@ -105,7 +105,7 @@ local results, err = client:Location():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
+| TypeScript | `@voxgig-sdk/rick-and-morty-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
 | Python | `voxgig-sdk-rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
 | PHP | `voxgig-sdk/rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/rick-and-morty-sdk/go` | `go get github.com/voxgig-sdk/rick-and-morty-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Location():list()
 ### TypeScript
 
 ```ts
-import { RickAndMortySDK } from '@voxgig-sdk/rick-and-morty'
+import { RickAndMortySDK } from '@voxgig-sdk/rick-and-morty-sdk'
 
 const client = new RickAndMortySDK()
 
