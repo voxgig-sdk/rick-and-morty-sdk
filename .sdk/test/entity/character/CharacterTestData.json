@@ -61,5 +61,449 @@
         "url": "s1eb"
       }
     }
+  },
+  "requests": {
+    "GET /character": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCharacters",
+        "parameters": [
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Filter by character name",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by status (alive, dead, or unknown)",
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "enum": [
+                "alive",
+                "dead",
+                "unknown"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by species",
+            "in": "query",
+            "name": "species",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by type",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by gender",
+            "in": "query",
+            "name": "gender",
+            "required": false,
+            "schema": {
+              "enum": [
+                "female",
+                "male",
+                "genderless",
+                "unknown"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "info": {
+                      "properties": {
+                        "count": {
+                          "description": "The length of the response",
+                          "type": "integer"
+                        },
+                        "next": {
+                          "description": "Link to the next page (if it exists)",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "pages": {
+                          "description": "The amount of pages",
+                          "type": "integer"
+                        },
+                        "prev": {
+                          "description": "Link to the previous page (if it exists)",
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "created": {
+                            "description": "Time at which the character was created in the database",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "episode": {
+                            "description": "List of episodes in which this character appeared",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "gender": {
+                            "description": "The gender of the character",
+                            "enum": [
+                              "Female",
+                              "Male",
+                              "Genderless",
+                              "unknown"
+                            ],
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The id of the character",
+                            "type": "integer"
+                          },
+                          "image": {
+                            "description": "Link to the character's image",
+                            "type": "string"
+                          },
+                          "location": {
+                            "properties": {
+                              "name": {
+                                "description": "Name of the last known location",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "URL to the last known location",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "name": {
+                            "description": "The name of the character",
+                            "type": "string"
+                          },
+                          "origin": {
+                            "properties": {
+                              "name": {
+                                "description": "Name of the origin location",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "URL to the origin location",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "species": {
+                            "description": "The species of the character",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "The status of the character",
+                            "enum": [
+                              "Alive",
+                              "Dead",
+                              "unknown"
+                            ],
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type or subspecies of the character",
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "Link to the character's own URL endpoint",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No characters found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /character/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCharacterById",
+        "parameters": [
+          {
+            "description": "Character ID or comma-separated list of IDs",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "created": {
+                          "description": "Time at which the character was created in the database",
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "episode": {
+                          "description": "List of episodes in which this character appeared",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "gender": {
+                          "description": "The gender of the character",
+                          "enum": [
+                            "Female",
+                            "Male",
+                            "Genderless",
+                            "unknown"
+                          ],
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "The id of the character",
+                          "type": "integer"
+                        },
+                        "image": {
+                          "description": "Link to the character's image",
+                          "type": "string"
+                        },
+                        "location": {
+                          "properties": {
+                            "name": {
+                              "description": "Name of the last known location",
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "URL to the last known location",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "name": {
+                          "description": "The name of the character",
+                          "type": "string"
+                        },
+                        "origin": {
+                          "properties": {
+                            "name": {
+                              "description": "Name of the origin location",
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "URL to the origin location",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "species": {
+                          "description": "The species of the character",
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "The status of the character",
+                          "enum": [
+                            "Alive",
+                            "Dead",
+                            "unknown"
+                          ],
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "The type or subspecies of the character",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "Link to the character's own URL endpoint",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "items": {
+                        "properties": {
+                          "created": {
+                            "description": "Time at which the character was created in the database",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "episode": {
+                            "description": "List of episodes in which this character appeared",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "gender": {
+                            "description": "The gender of the character",
+                            "enum": [
+                              "Female",
+                              "Male",
+                              "Genderless",
+                              "unknown"
+                            ],
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The id of the character",
+                            "type": "integer"
+                          },
+                          "image": {
+                            "description": "Link to the character's image",
+                            "type": "string"
+                          },
+                          "location": {
+                            "properties": {
+                              "name": {
+                                "description": "Name of the last known location",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "URL to the last known location",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "name": {
+                            "description": "The name of the character",
+                            "type": "string"
+                          },
+                          "origin": {
+                            "properties": {
+                              "name": {
+                                "description": "Name of the origin location",
+                                "type": "string"
+                              },
+                              "url": {
+                                "description": "URL to the origin location",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "species": {
+                            "description": "The species of the character",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "The status of the character",
+                            "enum": [
+                              "Alive",
+                              "Dead",
+                              "unknown"
+                            ],
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type or subspecies of the character",
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "Link to the character's own URL endpoint",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Character not found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { RickAndMortySDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('CharacterEntity', async () => {
 
     const live = 'TRUE' === process.env.RICK_AND_MORTY_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'character.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'character.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set RICK_AND_MORTY_TEST_CHARACTER_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"format":"date-time","name":"created","req":false,"short":"Time at which the character was created in the database","type":"`$STRING`","index$":0},{"active":true,"name":"episode","req":false,"short":"List of episodes in which this character appeared","type":"`$ARRAY`","index$":1},{"active":true,"name":"gender","req":false,"short":"The gender of the character","type":"`$STRING`","index$":2},{"active":true,"name":"id","req":false,"short":"The id of the character","type":"`$INTEGER`","index$":3},{"active":true,"name":"image","req":false,"short":"Link to the character's image","type":"`$STRING`","index$":4},{"active":true,"name":"location","req":false,"type":"`$OBJECT`","index$":5},{"active":true,"name":"name","req":false,"short":"The name of the character","type":"`$STRING`","index$":6},{"active":true,"name":"origin","req":false,"type":"`$OBJECT`","index$":7},{"active":true,"name":"species","req":false,"short":"The species of the character","type":"`$STRING`","index$":8},{"active":true,"name":"status","req":false,"short":"The status of the character","type":"`$STRING`","index$":9},{"active":true,"name":"type","req":false,"short":"The type or subspecies of the character","type":"`$STRING`","index$":10},{"active":true,"name":"url","req":false,"short":"Link to the character's own URL endpoint","type":"`$STRING`","index$":11}],"id":{"field":"id","name":"id"},"name":"character","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"gender","orig":"gender","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"kind":"query","name":"name","orig":"name","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"example":1,"kind":"query","name":"page","orig":"page","reqd":false,"type":"`$INTEGER`","index$":2},{"active":true,"kind":"query","name":"species","orig":"species","reqd":false,"type":"`$STRING`","index$":3},{"active":true,"kind":"query","name":"status","orig":"status","reqd":false,"type":"`$STRING`","index$":4},{"active":true,"kind":"query","name":"type","orig":"type","reqd":false,"type":"`$STRING`","index$":5}]},"contract":{"id":"GET /character","json":"{\"operationId\":\"getCharacters\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Filter by character name\",\"in\":\"query\",\"name\":\"name\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by status (alive, dead, or unknown)\",\"in\":\"query\",\"name\":\"status\",\"required\":false,\"schema\":{\"enum\":[\"alive\",\"dead\",\"unknown\"],\"type\":\"string\"}},{\"description\":\"Filter by species\",\"in\":\"query\",\"name\":\"species\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by type\",\"in\":\"query\",\"name\":\"type\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by gender\",\"in\":\"query\",\"name\":\"gender\",\"required\":false,\"schema\":{\"enum\":[\"female\",\"male\",\"genderless\",\"unknown\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"info\":{\"properties\":{\"count\":{\"description\":\"The length of the response\",\"type\":\"integer\"},\"next\":{\"description\":\"Link to the next page (if it exists)\",\"nullable\":true,\"type\":\"string\"},\"pages\":{\"description\":\"The amount of pages\",\"type\":\"integer\"},\"prev\":{\"description\":\"Link to the previous page (if it exists)\",\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"results\":{\"items\":{\"properties\":{\"created\":{\"description\":\"Time at which the character was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"episode\":{\"description\":\"List of episodes in which this character appeared\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"gender\":{\"description\":\"The gender of the character\",\"enum\":[\"Female\",\"Male\",\"Genderless\",\"unknown\"],\"type\":\"string\"},\"id\":{\"description\":\"The id of the character\",\"type\":\"integer\"},\"image\":{\"description\":\"Link to the character's image\",\"type\":\"string\"},\"location\":{\"properties\":{\"name\":{\"description\":\"Name of the last known location\",\"type\":\"string\"},\"url\":{\"description\":\"URL to the last known location\",\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"The name of the character\",\"type\":\"string\"},\"origin\":{\"properties\":{\"name\":{\"description\":\"Name of the origin location\",\"type\":\"string\"},\"url\":{\"description\":\"URL to the origin location\",\"type\":\"string\"}},\"type\":\"object\"},\"species\":{\"description\":\"The species of the character\",\"type\":\"string\"},\"status\":{\"description\":\"The status of the character\",\"enum\":[\"Alive\",\"Dead\",\"unknown\"],\"type\":\"string\"},\"type\":{\"description\":\"The type or subspecies of the character\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the character's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"No characters found\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/character","segments":[{"lit":"character"}],"select":{"exist":["gender","name","page","species","status","type"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /character/{id}","json":"{\"operationId\":\"getCharacterById\",\"parameters\":[{\"description\":\"Character ID or comma-separated list of IDs\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"created\":{\"description\":\"Time at which the character was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"episode\":{\"description\":\"List of episodes in which this character appeared\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"gender\":{\"description\":\"The gender of the character\",\"enum\":[\"Female\",\"Male\",\"Genderless\",\"unknown\"],\"type\":\"string\"},\"id\":{\"description\":\"The id of the character\",\"type\":\"integer\"},\"image\":{\"description\":\"Link to the character's image\",\"type\":\"string\"},\"location\":{\"properties\":{\"name\":{\"description\":\"Name of the last known location\",\"type\":\"string\"},\"url\":{\"description\":\"URL to the last known location\",\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"The name of the character\",\"type\":\"string\"},\"origin\":{\"properties\":{\"name\":{\"description\":\"Name of the origin location\",\"type\":\"string\"},\"url\":{\"description\":\"URL to the origin location\",\"type\":\"string\"}},\"type\":\"object\"},\"species\":{\"description\":\"The species of the character\",\"type\":\"string\"},\"status\":{\"description\":\"The status of the character\",\"enum\":[\"Alive\",\"Dead\",\"unknown\"],\"type\":\"string\"},\"type\":{\"description\":\"The type or subspecies of the character\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the character's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},{\"items\":{\"properties\":{\"created\":{\"description\":\"Time at which the character was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"episode\":{\"description\":\"List of episodes in which this character appeared\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"gender\":{\"description\":\"The gender of the character\",\"enum\":[\"Female\",\"Male\",\"Genderless\",\"unknown\"],\"type\":\"string\"},\"id\":{\"description\":\"The id of the character\",\"type\":\"integer\"},\"image\":{\"description\":\"Link to the character's image\",\"type\":\"string\"},\"location\":{\"properties\":{\"name\":{\"description\":\"Name of the last known location\",\"type\":\"string\"},\"url\":{\"description\":\"URL to the last known location\",\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"description\":\"The name of the character\",\"type\":\"string\"},\"origin\":{\"properties\":{\"name\":{\"description\":\"Name of the origin location\",\"type\":\"string\"},\"url\":{\"description\":\"URL to the origin location\",\"type\":\"string\"}},\"type\":\"object\"},\"species\":{\"description\":\"The species of the character\",\"type\":\"string\"},\"status\":{\"description\":\"The status of the character\",\"enum\":[\"Alive\",\"Dead\",\"unknown\"],\"type\":\"string\"},\"type\":{\"description\":\"The type or subspecies of the character\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the character's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}]}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Character not found\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/character/{id}","segments":[{"lit":"character"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"character","name__orig":"character","Name":"Character","name_":"character","name-":"character","NAME":"CHARACTER","index$":0}, {"active":true,"entity":"character","key$":"BasicCharacterFlow","kind":"basic","name":"BasicCharacterFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"character_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"character_ref01","srcdatavar":"character_ref01_data","suffix":"_dt0"},"match":{"id":"character01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-character_ref01"}}],"index$":1}]}, 'Character')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['RICK_AND_MORTY_TEST_CHARACTER_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'RICK_AND_MORTY_TEST_CHARACTER_ENTID': idmap,
     'RICK_AND_MORTY_TEST_LIVE': 'FALSE',
@@ -133,7 +125,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.RICK_AND_MORTY_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['RICK_AND_MORTY_TEST_CHARACTER_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new RickAndMortySDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -145,7 +143,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -158,7 +157,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.RICK_AND_MORTY_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

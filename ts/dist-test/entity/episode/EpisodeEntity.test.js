@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.RICK_AND_MORTY_TEST_LIVE;
         for (const op of ['list', 'load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'episode.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'episode.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set RICK_AND_MORTY_TEST_EPISODE_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "air_date", "req": false, "short": "The air date of the episode", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "characters", "req": false, "short": "List of characters who have been seen in this episode", "type": "`$ARRAY`", "index$": 1 }, { "active": true, "format": "date-time", "name": "created", "req": false, "short": "Time at which the episode was created in the database", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "episode", "req": false, "short": "The code of the episode (e.g., S01E01)", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "id", "req": false, "short": "The id of the episode", "type": "`$INTEGER`", "index$": 4 }, { "active": true, "name": "name", "req": false, "short": "The name of the episode", "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "url", "req": false, "short": "Link to the episode's own URL endpoint", "type": "`$STRING`", "index$": 6 }], "id": { "field": "id", "name": "id" }, "name": "episode", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "kind": "query", "name": "episode", "orig": "episode", "reqd": false, "type": "`$STRING`", "index$": 0 }, { "active": true, "kind": "query", "name": "name", "orig": "name", "reqd": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "example": 1, "kind": "query", "name": "page", "orig": "page", "reqd": false, "type": "`$INTEGER`", "index$": 2 }] }, "contract": { "id": "GET /episode", "json": "{\"operationId\":\"getEpisodes\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Filter by episode name\",\"in\":\"query\",\"name\":\"name\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by episode code (e.g., S01E01)\",\"in\":\"query\",\"name\":\"episode\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"info\":{\"properties\":{\"count\":{\"description\":\"The length of the response\",\"type\":\"integer\"},\"next\":{\"description\":\"Link to the next page (if it exists)\",\"nullable\":true,\"type\":\"string\"},\"pages\":{\"description\":\"The amount of pages\",\"type\":\"integer\"},\"prev\":{\"description\":\"Link to the previous page (if it exists)\",\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"results\":{\"items\":{\"properties\":{\"air_date\":{\"description\":\"The air date of the episode\",\"type\":\"string\"},\"characters\":{\"description\":\"List of characters who have been seen in this episode\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"created\":{\"description\":\"Time at which the episode was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"episode\":{\"description\":\"The code of the episode (e.g., S01E01)\",\"type\":\"string\"},\"id\":{\"description\":\"The id of the episode\",\"type\":\"integer\"},\"name\":{\"description\":\"The name of the episode\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the episode's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"No episodes found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/episode", "segments": [{ "lit": "episode" }], "select": { "exist": ["episode", "name", "page"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "id", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /episode/{id}", "json": "{\"operationId\":\"getEpisodeById\",\"parameters\":[{\"description\":\"Episode ID or comma-separated list of IDs\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"air_date\":{\"description\":\"The air date of the episode\",\"type\":\"string\"},\"characters\":{\"description\":\"List of characters who have been seen in this episode\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"created\":{\"description\":\"Time at which the episode was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"episode\":{\"description\":\"The code of the episode (e.g., S01E01)\",\"type\":\"string\"},\"id\":{\"description\":\"The id of the episode\",\"type\":\"integer\"},\"name\":{\"description\":\"The name of the episode\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the episode's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},{\"items\":{\"properties\":{\"air_date\":{\"description\":\"The air date of the episode\",\"type\":\"string\"},\"characters\":{\"description\":\"List of characters who have been seen in this episode\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"created\":{\"description\":\"Time at which the episode was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"episode\":{\"description\":\"The code of the episode (e.g., S01E01)\",\"type\":\"string\"},\"id\":{\"description\":\"The id of the episode\",\"type\":\"integer\"},\"name\":{\"description\":\"The name of the episode\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the episode's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}]}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Episode not found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/episode/{id}", "segments": [{ "lit": "episode" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "episode", "name__orig": "episode", "Name": "Episode", "name_": "episode", "name-": "episode", "NAME": "EPISODE", "index$": 1 }, { "active": true, "entity": "episode", "key$": "BasicEpisodeFlow", "kind": "basic", "name": "BasicEpisodeFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "episode_ref01" } }], "index$": 0 }, { "active": true, "data": {}, "input": { "ref": "episode_ref01", "srcdatavar": "episode_ref01_data", "suffix": "_dt0" }, "match": { "id": "episode01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-episode_ref01" } }], "index$": 1 }] }, 'Episode');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -106,12 +104,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['RICK_AND_MORTY_TEST_EPISODE_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'RICK_AND_MORTY_TEST_EPISODE_ENTID': idmap,
         'RICK_AND_MORTY_TEST_LIVE': 'FALSE',
@@ -119,7 +111,13 @@ function basicSetup(extra) {
     });
     idmap = env['RICK_AND_MORTY_TEST_EPISODE_ENTID'];
     const live = 'TRUE' === env.RICK_AND_MORTY_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['RICK_AND_MORTY_TEST_EPISODE_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.RickAndMortySDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -130,7 +128,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -142,7 +141,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.RICK_AND_MORTY_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

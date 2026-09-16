@@ -4,7 +4,10 @@ declare(strict_types=1);
 // RickAndMorty SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class RickAndMortyFeatures
@@ -14,8 +17,14 @@ class RickAndMortyFeatures
         switch ($name) {
             case "base":
                 return new RickAndMortyBaseFeature();
+            case "ratelimit":
+                return new RickAndMortyRatelimitFeature();
+            case "retry":
+                return new RickAndMortyRetryFeature();
             case "test":
                 return new RickAndMortyTestFeature();
+            case "timeout":
+                return new RickAndMortyTimeoutFeature();
             default:
                 return new RickAndMortyBaseFeature();
         }
@@ -31,7 +40,10 @@ class RickAndMortyFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

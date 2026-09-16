@@ -1,12 +1,18 @@
 # RickAndMorty SDK feature factory
 
 from rickandmorty_sdk.feature.base_feature import RickAndMortyBaseFeature
+from rickandmorty_sdk.feature.ratelimit_feature import RickAndMortyRatelimitFeature
+from rickandmorty_sdk.feature.retry_feature import RickAndMortyRetryFeature
 from rickandmorty_sdk.feature.test_feature import RickAndMortyTestFeature
+from rickandmorty_sdk.feature.timeout_feature import RickAndMortyTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: RickAndMortyBaseFeature(),
+    "ratelimit": lambda: RickAndMortyRatelimitFeature(),
+    "retry": lambda: RickAndMortyRetryFeature(),
     "test": lambda: RickAndMortyTestFeature(),
+    "timeout": lambda: RickAndMortyTimeoutFeature(),
 }
 
 

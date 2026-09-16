@@ -94,6 +94,12 @@ main: kit: entity: location: {
               }
             ]
           }
+          contract: {
+            id: "GET /location"
+            json: "{\"operationId\":\"getLocations\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Filter by location name\",\"in\":\"query\",\"name\":\"name\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by type\",\"in\":\"query\",\"name\":\"type\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by dimension\",\"in\":\"query\",\"name\":\"dimension\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"info\":{\"properties\":{\"count\":{\"description\":\"The length of the response\",\"type\":\"integer\"},\"next\":{\"description\":\"Link to the next page (if it exists)\",\"nullable\":true,\"type\":\"string\"},\"pages\":{\"description\":\"The amount of pages\",\"type\":\"integer\"},\"prev\":{\"description\":\"Link to the previous page (if it exists)\",\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"results\":{\"items\":{\"properties\":{\"created\":{\"description\":\"Time at which the location was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"dimension\":{\"description\":\"The dimension in which the location is located\",\"type\":\"string\"},\"id\":{\"description\":\"The id of the location\",\"type\":\"integer\"},\"name\":{\"description\":\"The name of the location\",\"type\":\"string\"},\"residents\":{\"description\":\"List of characters who have been last seen in this location\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the location\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the location's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"No locations found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/location"
           segments: [
@@ -130,6 +136,12 @@ main: kit: entity: location: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /location/{id}"
+            json: "{\"operationId\":\"getLocationById\",\"parameters\":[{\"description\":\"Location ID or comma-separated list of IDs\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"created\":{\"description\":\"Time at which the location was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"dimension\":{\"description\":\"The dimension in which the location is located\",\"type\":\"string\"},\"id\":{\"description\":\"The id of the location\",\"type\":\"integer\"},\"name\":{\"description\":\"The name of the location\",\"type\":\"string\"},\"residents\":{\"description\":\"List of characters who have been last seen in this location\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the location\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the location's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},{\"items\":{\"properties\":{\"created\":{\"description\":\"Time at which the location was created in the database\",\"format\":\"date-time\",\"type\":\"string\"},\"dimension\":{\"description\":\"The dimension in which the location is located\",\"type\":\"string\"},\"id\":{\"description\":\"The id of the location\",\"type\":\"integer\"},\"name\":{\"description\":\"The name of the location\",\"type\":\"string\"},\"residents\":{\"description\":\"List of characters who have been last seen in this location\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the location\",\"type\":\"string\"},\"url\":{\"description\":\"Link to the location's own URL endpoint\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}]}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Location not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/location/{id}"
