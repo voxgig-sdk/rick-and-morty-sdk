@@ -105,12 +105,12 @@ local results, err = client:Location():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/rick-and-morty-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
-| Python | `voxgig-sdk-rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
-| PHP | `voxgig-sdk/rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
+| TypeScript | `@voxgig-sdk/rick-and-morty-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/tags) |
+| Python | `voxgig-sdk-rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/tags) |
+| PHP | `voxgig-sdk/rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/rick-and-morty-sdk/go` | `go get github.com/voxgig-sdk/rick-and-morty-sdk/go@latest` |
-| Ruby | `voxgig-sdk-rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
-| Lua | `voxgig-sdk-rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases) |
+| Ruby | `voxgig-sdk-rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/tags) |
+| Lua | `voxgig-sdk-rick-and-morty` | publish pending — [install from git tag](https://github.com/voxgig-sdk/rick-and-morty-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/rick-and-morty-sdk/go-cli` | `go install github.com/voxgig-sdk/rick-and-morty-sdk/go-cli/cmd/rick-and-morty@latest` |
 | Go MCP server | `github.com/voxgig-sdk/rick-and-morty-sdk/go-mcp` | `go get github.com/voxgig-sdk/rick-and-morty-sdk/go-mcp@latest` |
 
