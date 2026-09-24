@@ -1,7 +1,7 @@
 // Typed models for the RickAndMorty SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,18 +14,6 @@ import (
 
 // Character is the typed data model for the character entity.
 type Character struct {
-	Created *string `json:"created,omitempty"`
-	Episode *[]any `json:"episode,omitempty"`
-	Gender *string `json:"gender,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Image *string `json:"image,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Origin *map[string]any `json:"origin,omitempty"`
-	Species *string `json:"species,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // CharacterLoadMatch is the typed request payload for Character.LoadTyped.
@@ -45,13 +33,6 @@ type CharacterListMatch struct {
 
 // Episode is the typed data model for the episode entity.
 type Episode struct {
-	AirDate *string `json:"air_date,omitempty"`
-	Characters *[]any `json:"characters,omitempty"`
-	Created *string `json:"created,omitempty"`
-	Episode *string `json:"episode,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // EpisodeLoadMatch is the typed request payload for Episode.LoadTyped.
@@ -68,13 +49,6 @@ type EpisodeListMatch struct {
 
 // Location is the typed data model for the location entity.
 type Location struct {
-	Created *string `json:"created,omitempty"`
-	Dimension *string `json:"dimension,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Residents *[]any `json:"residents,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // LocationLoadMatch is the typed request payload for Location.LoadTyped.
