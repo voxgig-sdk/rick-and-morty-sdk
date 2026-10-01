@@ -11,6 +11,7 @@ guide: {
   entity: character: {
     path: "/character": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
     path: "/character/{id}": {
       op: load: method: *GET
@@ -20,6 +21,7 @@ guide: {
   entity: episode: {
     path: "/episode": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
     path: "/episode/{id}": {
       op: load: method: *GET
@@ -29,6 +31,7 @@ guide: {
   entity: location: {
     path: "/location": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
     path: "/location/{id}": {
       op: load: method: *GET

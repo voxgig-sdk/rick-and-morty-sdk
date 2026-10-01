@@ -172,7 +172,7 @@ main: kit: entity: character: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

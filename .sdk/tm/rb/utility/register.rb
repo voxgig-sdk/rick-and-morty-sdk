@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 RickAndMortyUtility.registrar = ->(u) {
   u.clean = RickAndMortyUtilities::Clean
+  u.clean_add = RickAndMortyUtilities::CleanAdd
+  u.clean_explain = RickAndMortyUtilities::CleanExplain
   u.done = RickAndMortyUtilities::Done
   u.make_error = RickAndMortyUtilities::MakeError
   u.feature_add = RickAndMortyUtilities::FeatureAdd

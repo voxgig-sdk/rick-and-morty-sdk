@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/rick-and-morty-sdk/releases](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/rick-and-morty-sdk
+composer config repositories.rick-and-morty-sdk path ./rick-and-morty-sdk/php
+composer require voxgig-sdk/rick-and-morty-sdk:@dev
+```
 
 
 ## Tutorial: your first API call

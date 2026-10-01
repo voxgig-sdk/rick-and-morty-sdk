@@ -196,7 +196,7 @@ module RickAndMortyConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "args" => {
                     "query" => [
@@ -372,7 +372,7 @@ module RickAndMortyConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "args" => {
                     "query" => [
@@ -527,7 +527,7 @@ module RickAndMortyConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.results`",
                   },
                   "args" => {
                     "query" => [

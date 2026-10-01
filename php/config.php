@@ -210,7 +210,7 @@ class RickAndMortyConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.results`',
                   ],
                   'args' => [
                     'query' => [
@@ -386,7 +386,7 @@ class RickAndMortyConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.results`',
                   ],
                   'args' => [
                     'query' => [
@@ -541,7 +541,7 @@ class RickAndMortyConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.results`',
                   ],
                   'args' => [
                     'query' => [

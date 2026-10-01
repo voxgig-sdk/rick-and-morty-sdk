@@ -115,7 +115,7 @@ main: kit: entity: episode: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

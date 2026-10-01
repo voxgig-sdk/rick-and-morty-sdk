@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 RickAndMortyUtility::setRegistrar(function (RickAndMortyUtility $u): void {
     $u->clean = [RickAndMortyClean::class, 'call'];
+    $u->clean_add = [RickAndMortyClean::class, 'add'];
+    $u->clean_explain = [RickAndMortyDone::class, 'clean_explain'];
     $u->done = [RickAndMortyDone::class, 'call'];
     $u->make_error = [RickAndMortyMakeError::class, 'call'];
     $u->feature_add = [RickAndMortyFeatureAdd::class, 'call'];
