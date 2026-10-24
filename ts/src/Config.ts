@@ -102,6 +102,7 @@ class Config {
       },
       "optspec": {
         "clearTimer": "`$FUNCTION`",
+        "now": "`$FUNCTION`",
         "setTimer": "`$FUNCTION`"
       },
       "strict": false,
@@ -241,13 +242,15 @@ class Config {
                     "name": "gender",
                     "orig": "gender",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "name",
                     "orig": "name",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "page",
@@ -260,31 +263,29 @@ class Config {
                     "name": "species",
                     "orig": "species",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "status",
                     "orig": "status",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "type",
                     "orig": "type",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "gender",
-                  "name",
-                  "page",
-                  "species",
-                  "status",
-                  "type"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -329,6 +330,10 @@ class Config {
                 "exist": [
                   "id"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -417,13 +422,15 @@ class Config {
                     "name": "episode",
                     "orig": "episode",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "name",
                     "orig": "name",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "page",
@@ -434,12 +441,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "episode",
-                  "name",
-                  "page"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -484,6 +489,10 @@ class Config {
                 "exist": [
                   "id"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -572,13 +581,15 @@ class Config {
                     "name": "dimension",
                     "orig": "dimension",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "name",
                     "orig": "name",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "page",
@@ -591,17 +602,15 @@ class Config {
                     "name": "type",
                     "orig": "type",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "dimension",
-                  "name",
-                  "page",
-                  "type"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -646,6 +655,10 @@ class Config {
                 "exist": [
                   "id"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]

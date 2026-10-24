@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -197,12 +198,14 @@ func MakeConfig() map[string]any {
 											"orig": "gender",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "name",
 											"orig": "name",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "page",
@@ -216,30 +219,28 @@ func MakeConfig() map[string]any {
 											"orig": "species",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "status",
 											"orig": "status",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "type",
 											"orig": "type",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"gender",
-										"name",
-										"page",
-										"species",
-										"status",
-										"type",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -284,6 +285,10 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"id",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -373,12 +378,14 @@ func MakeConfig() map[string]any {
 											"orig": "episode",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "name",
 											"orig": "name",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "page",
@@ -389,12 +396,10 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"episode",
-										"name",
-										"page",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -439,6 +444,10 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"id",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -528,12 +537,14 @@ func MakeConfig() map[string]any {
 											"orig": "dimension",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "name",
 											"orig": "name",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "page",
@@ -547,16 +558,14 @@ func MakeConfig() map[string]any {
 											"orig": "type",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"dimension",
-										"name",
-										"page",
-										"type",
-									},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -601,6 +610,10 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"id",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/rick-and-morty-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/rick-and-morty-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = RickAndMortySDK.new
 
 ```ruby
 begin
-  # list returns an Array of Character records — iterate directly.
+  # list returns an Array of Character entities, one per record; data_get reads the record.
   characters = client.Character.list
   characters.each do |item|
-    puts "#{item["id"]} #{item["created"]}"
+    record = item.data_get
+    puts "#{record["id"]} #{record["created"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -59,7 +60,7 @@ end
 begin
   # load returns the ENTITY — call data_get for the Character record (raises on error).
   character = client.Character.load({ "id" => "example_id" })
-  puts character
+  puts character.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -143,10 +144,10 @@ client = RickAndMortySDK.test({
   "entity" => { "location" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-location = client.Location.list()
-puts location
+# list returns an Array of Location entities, one per mock record (raises on
+# error); data_get reads each record.
+locations = client.Location.list()
+locations.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -232,8 +233,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -243,9 +244,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `RickAndMortyError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`RickAndMortyError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -356,8 +358,9 @@ character = client.Character.load({ "id" => "character_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Character records (raises on error).
+# list returns an Array of Character entities, one per record (raises on error).
 characters = client.Character.list
+characters.each { |item| puts item.data_get }
 ```
 
 
@@ -394,8 +397,9 @@ episode = client.Episode.load({ "id" => "episode_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Episode records (raises on error).
+# list returns an Array of Episode entities, one per record (raises on error).
 episodes = client.Episode.list
+episodes.each { |item| puts item.data_get }
 ```
 
 
@@ -432,8 +436,9 @@ location = client.Location.load({ "id" => "location_id" })
 #### Example: List
 
 ```ruby
-# list returns an Array of Location records (raises on error).
+# list returns an Array of Location entities, one per record (raises on error).
 locations = client.Location.list
+locations.each { |item| puts item.data_get }
 ```
 
 ## Features

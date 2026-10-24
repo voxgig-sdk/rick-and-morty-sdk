@@ -3,5 +3,27 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API providing information about characters, locations, and episodes from the Rick and Morty show. Supports GraphQL and REST endpoints for querying data.",
+      "Link to the character&#39;s image",
+      "List of characters who have been last seen in this location",
+      "List of characters who have been seen in this episode",
+      "List of episodes in which this character appeared",
+      "Production server",
+      "Successful response",
+      "The air date of the episode",
+      "The code of the episode (for example, S01E01)",
+      "The dimension in which the location is located",
+      "The gender of the character",
+      "The id of the character",
+      "The id of the episode",
+      "The id of the location",
+      "The name of the location",
+      "Time at which the character was created in the database",
+      "Time at which the episode was created in the database",
+      "Time at which the location was created in the database"
+    ]
+  }
 }

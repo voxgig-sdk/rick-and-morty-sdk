@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Character();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('character hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.RickAndMortySDK.test(offline).Character().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.RickAndMortySDK.test(offline).Character()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.RickAndMortySDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Character().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.RickAndMortySDK.test().Character().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.RickAndMortySDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Character().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Character().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.RickAndMortySDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Character().list({ "gender": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.RICK_AND_MORTY_TEST_LIVE;
         for (const op of ['list', 'load']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "created": { "a": true, "fo": "date-time", "h": "Created", "n": "created", "r": false, "sh": "Time at which the character was created in the database", "t": "`$STRING`", "key$": "created", "index$": 0 }, "episode": { "a": true, "h": "Episode", "n": "episode", "r": false, "sh": "List of episodes in which this character appeared", "t": "`$ARRAY`", "key$": "episode", "index$": 1 }, "gender": { "a": true, "h": "Gender", "n": "gender", "r": false, "sh": "The gender of the character", "t": "`$STRING`", "key$": "gender", "index$": 2 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "The id of the character", "t": "`$INTEGER`", "key$": "id", "index$": 3 }, "image": { "a": true, "h": "Image", "n": "image", "r": false, "sh": "Link to the character's image", "t": "`$STRING`", "key$": "image", "index$": 4 }, "location": { "a": true, "h": "Location", "n": "location", "r": false, "t": "`$OBJECT`", "key$": "location", "index$": 5 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "The name of the character", "t": "`$STRING`", "key$": "name", "index$": 6 }, "origin": { "a": true, "h": "Origin", "n": "origin", "r": false, "t": "`$OBJECT`", "key$": "origin", "index$": 7 }, "species": { "a": true, "h": "Species", "n": "species", "r": false, "sh": "The species of the character", "t": "`$STRING`", "key$": "species", "index$": 8 }, "status": { "a": true, "h": "Status", "n": "status", "r": false, "sh": "The status of the character", "t": "`$STRING`", "key$": "status", "index$": 9 }, "type": { "a": true, "h": "Type", "n": "type", "r": false, "sh": "The type or subspecies of the character", "t": "`$STRING`", "key$": "type", "index$": 10 }, "url": { "a": true, "h": "Url", "n": "url", "r": false, "sh": "Link to the character's own URL endpoint", "t": "`$STRING`", "key$": "url", "index$": 11 } }, "id": { "field": "id", "name": "id" }, "name": "character", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /character", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "gender", "or": "gender", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "name", "or": "name", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "ex": 1, "k": "query", "n": "page", "or": "page", "r": false, "t": "`$INTEGER`", "index$": 2 }, { "a": true, "k": "query", "n": "species", "or": "species", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "k": "query", "n": "status", "or": "status", "r": false, "t": "`$STRING`", "index$": 4 }, { "a": true, "k": "query", "n": "type", "or": "type", "r": false, "t": "`$STRING`", "index$": 5 }] }, "k": "http", "m": "GET", "o": "/character", "q": { "exist": ["gender", "name", "page", "species", "status", "type"] }, "r": {}, "s": [{ "lit": "character" }], "t": { "req": "`reqdata`", "res": "`body.results`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /character/{id}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/character/{id}", "q": { "exist": ["id"] }, "r": {}, "s": [{ "lit": "character" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "character", "name__orig": "character", "Name": "Character", "name_": "character", "name-": "character", "NAME": "CHARACTER", "index$": 0 }, { "active": true, "entity": "character", "key$": "BasicCharacterFlow", "kind": "basic", "name": "BasicCharacterFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "character_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "character_ref01", "srcdatavar": "character_ref01_data", "suffix": "_dt0" }, "m": { "id": "character01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-character_ref01" } }], "index$": 1 }] }, 'Character', { "GET /character": { "protocol": "http", "parameters": [{ "name": "page", "in": "query", "description": "Page number for pagination", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 1 }, "index$": 0 }, { "name": "name", "in": "query", "description": "Filter by character name", "required": false, "schema": { "type": "string" }, "index$": 1 }, { "name": "status", "in": "query", "description": "Filter by status (alive, dead, or unknown)", "required": false, "schema": { "type": "string", "enum": ["alive", "dead", "unknown"] }, "index$": 2 }, { "name": "species", "in": "query", "description": "Filter by species", "required": false, "schema": { "type": "string" }, "index$": 3 }, { "name": "type", "in": "query", "description": "Filter by type", "required": false, "schema": { "type": "string" }, "index$": 4 }, { "name": "gender", "in": "query", "description": "Filter by gender", "required": false, "schema": { "type": "string", "enum": ["female", "male", "genderless", "unknown"] }, "index$": 5 }] }, "GET /character/{id}": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "description": "Character ID or comma-separated list of IDs", "required": true, "schema": { "type": "string" }, "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "created": { "a": true, "fo": "date-time", "h": "Created", "n": "created", "r": false, "sh": "Time at which the character was created in the database", "t": "`$STRING`", "key$": "created", "index$": 0 }, "episode": { "a": true, "h": "Episode", "n": "episode", "r": false, "sh": "List of episodes in which this character appeared", "t": "`$ARRAY`", "key$": "episode", "index$": 1 }, "gender": { "a": true, "h": "Gender", "n": "gender", "r": false, "sh": "The gender of the character", "t": "`$STRING`", "key$": "gender", "index$": 2 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "The id of the character", "t": "`$INTEGER`", "key$": "id", "index$": 3 }, "image": { "a": true, "h": "Image", "n": "image", "r": false, "sh": "Link to the character's image", "t": "`$STRING`", "key$": "image", "index$": 4 }, "location": { "a": true, "h": "Location", "n": "location", "r": false, "t": "`$OBJECT`", "key$": "location", "index$": 5 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "The name of the character", "t": "`$STRING`", "key$": "name", "index$": 6 }, "origin": { "a": true, "h": "Origin", "n": "origin", "r": false, "t": "`$OBJECT`", "key$": "origin", "index$": 7 }, "species": { "a": true, "h": "Species", "n": "species", "r": false, "sh": "The species of the character", "t": "`$STRING`", "key$": "species", "index$": 8 }, "status": { "a": true, "h": "Status", "n": "status", "r": false, "sh": "The status of the character", "t": "`$STRING`", "key$": "status", "index$": 9 }, "type": { "a": true, "h": "Type", "n": "type", "r": false, "sh": "The type or subspecies of the character", "t": "`$STRING`", "key$": "type", "index$": 10 }, "url": { "a": true, "h": "Url", "n": "url", "r": false, "sh": "Link to the character's own URL endpoint", "t": "`$STRING`", "key$": "url", "index$": 11 } }, "id": { "field": "id", "name": "id" }, "name": "character", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /character", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "gender", "or": "gender", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "name", "or": "name", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "ex": 1, "k": "query", "n": "page", "or": "page", "r": false, "t": "`$INTEGER`", "index$": 2 }, { "a": true, "k": "query", "n": "species", "or": "species", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "k": "query", "n": "status", "or": "status", "r": false, "t": "`$STRING`", "index$": 4 }, { "a": true, "k": "query", "n": "type", "or": "type", "r": false, "t": "`$STRING`", "index$": 5 }] }, "k": "http", "m": "GET", "o": "/character", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "character" }], "t": { "req": "`reqdata`", "res": "`body.results`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /character/{id}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "k": "param", "n": "id", "or": "id", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/character/{id}", "q": { "exist": ["id"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "character" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "character", "name__orig": "character", "Name": "Character", "name_": "character", "name-": "character", "NAME": "CHARACTER", "index$": 0 }, { "active": true, "entity": "character", "key$": "BasicCharacterFlow", "kind": "basic", "name": "BasicCharacterFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "character_ref01" } }], "index$": 0 }, { "a": true, "d": {}, "i": { "ref": "character_ref01", "srcdatavar": "character_ref01_data", "suffix": "_dt0" }, "m": { "id": "character01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-character_ref01" } }], "index$": 1 }] }, 'Character', { "GET /character": { "protocol": "http", "parameters": [{ "name": "page", "in": "query", "description": "Page number for pagination", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 1 }, "index$": 0 }, { "name": "name", "in": "query", "description": "Filter by character name", "required": false, "schema": { "type": "string" }, "index$": 1 }, { "name": "status", "in": "query", "description": "Filter by status (alive, dead, or unknown)", "required": false, "schema": { "type": "string", "enum": ["alive", "dead", "unknown"] }, "index$": 2 }, { "name": "species", "in": "query", "description": "Filter by species", "required": false, "schema": { "type": "string" }, "index$": 3 }, { "name": "type", "in": "query", "description": "Filter by type", "required": false, "schema": { "type": "string" }, "index$": 4 }, { "name": "gender", "in": "query", "description": "Filter by gender", "required": false, "schema": { "type": "string", "enum": ["female", "male", "genderless", "unknown"] }, "index$": 5 }] }, "GET /character/{id}": { "protocol": "http", "parameters": [{ "name": "id", "in": "path", "description": "Character ID or comma-separated list of IDs", "required": true, "schema": { "type": "string" }, "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -80,6 +127,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(character_ref01_data_dt0.id === character_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

@@ -111,8 +111,10 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs.headers` | `object` | Request headers (merged with defaults). |
 | `fetchargs.body` | `any` | Request body (objects are JSON-serialized). |
 | `fetchargs.ctrl` | `object` | Control options (e.g. `{ explain: true }`). |
+| `fetchargs.ctrl.signal` | `AbortSignal` | Aborts the request in flight: `ok` is then `false` and `err.code` is `request_aborted`. |
 
-**Returns:** `Promise<{ ok, status, headers, data } | Error>`
+**Returns:** `Promise<{ ok, status, headers, data }>`. On a failure
+`ok` is `false` and `err` holds the error.
 
 #### `prepare(fetchargs?: object)`
 
@@ -126,6 +128,15 @@ same parameters as `direct()`.
 Alias for `RickAndMortySDK.test()`.
 
 **Returns:** `RickAndMortySDK` instance in test mode.
+
+#### Cancelling a call
+
+Every entity operation takes an optional `ctrl` object after its match or
+data, and an `AbortSignal` in `ctrl.signal` cancels the request in flight.
+The operation then rejects with an error whose `code` is
+`request_aborted` and whose `cause` is the signal's reason. A request
+whose signal has already aborted is not sent. `stream()` takes the signal
+as `callopts.signal`, and ends when it aborts.
 
 
 ---
@@ -157,7 +168,7 @@ const character = client.Character()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Character().list()
@@ -165,7 +176,7 @@ const results = await client.Character().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Character().load({ id: 'character_id' })
@@ -221,7 +232,7 @@ const episode = client.Episode()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Episode().list()
@@ -229,7 +240,7 @@ const results = await client.Episode().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Episode().load({ id: 'episode_id' })
@@ -285,7 +296,7 @@ const location = client.Location()
 
 #### `list(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
 const results = await client.Location().list()
@@ -293,7 +304,7 @@ const results = await client.Location().list()
 
 #### `load(match: object, ctrl?: object)`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
 const result = await client.Location().load({ id: 'location_id' })
@@ -484,6 +495,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

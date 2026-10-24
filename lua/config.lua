@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -193,12 +194,14 @@ local function make_config()
                       ["orig"] = "gender",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "name",
                       ["orig"] = "name",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "page",
@@ -212,30 +215,28 @@ local function make_config()
                       ["orig"] = "species",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "status",
                       ["orig"] = "status",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "type",
                       ["orig"] = "type",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "gender",
-                    "name",
-                    "page",
-                    "species",
-                    "status",
-                    "type",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -280,6 +281,10 @@ local function make_config()
                   ["exist"] = {
                     "id",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -369,12 +374,14 @@ local function make_config()
                       ["orig"] = "episode",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "name",
                       ["orig"] = "name",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "page",
@@ -385,12 +392,10 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "episode",
-                    "name",
-                    "page",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -435,6 +440,10 @@ local function make_config()
                   ["exist"] = {
                     "id",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -524,12 +533,14 @@ local function make_config()
                       ["orig"] = "dimension",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "name",
                       ["orig"] = "name",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "page",
@@ -543,16 +554,14 @@ local function make_config()
                       ["orig"] = "type",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "dimension",
-                    "name",
-                    "page",
-                    "type",
-                  },
+                ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -597,6 +606,10 @@ local function make_config()
                   ["exist"] = {
                     "id",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },

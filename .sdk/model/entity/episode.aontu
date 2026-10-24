@@ -101,12 +101,9 @@ main: kit: entity: episode: {
           }
           m: "GET"
           o: "/episode"
-          q: {
-            exist: [
-              "episode"
-              "name"
-              "page"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -146,6 +143,10 @@ main: kit: entity: episode: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

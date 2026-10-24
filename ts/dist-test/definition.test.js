@@ -18,12 +18,16 @@ const PLAN = [
         "select": {
             "gender": "v1",
             "name": "v1",
-            "page": "v1",
+            "page": 1,
             "species": "v1",
             "status": "v1",
             "type": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "page",
             "name",
@@ -32,37 +36,63 @@ const PLAN = [
             "type",
             "gender"
         ],
+        "queryArgs": [
+            {
+                "name": "gender",
+                "wire": "gender"
+            },
+            {
+                "name": "name",
+                "wire": "name"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            },
+            {
+                "name": "species",
+                "wire": "species"
+            },
+            {
+                "name": "status",
+                "wire": "status"
+            },
+            {
+                "name": "type",
+                "wire": "type"
+            }
+        ],
         "auth": null,
         "status": 200,
         "sample": {
             "info": {
                 "count": 1,
-                "next": "x",
                 "pages": 1,
+                "next": "x",
                 "prev": "x"
             },
             "results": [
                 {
-                    "created": "2026-01-01T00:00:00Z",
-                    "episode": [
-                        "x"
-                    ],
-                    "gender": "Female",
                     "id": 1,
-                    "image": "x",
-                    "location": {
-                        "name": "x",
-                        "url": "x"
-                    },
                     "name": "x",
+                    "status": "Alive",
+                    "species": "x",
+                    "type": "x",
+                    "gender": "Female",
                     "origin": {
                         "name": "x",
                         "url": "x"
                     },
-                    "species": "x",
-                    "status": "Alive",
-                    "type": "x",
-                    "url": "x"
+                    "location": {
+                        "name": "x",
+                        "url": "x"
+                    },
+                    "image": "x",
+                    "episode": [
+                        "x"
+                    ],
+                    "url": "x",
+                    "created": "2026-01-01T00:00:00Z"
                 }
             ]
         },
@@ -83,7 +113,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -120,34 +155,52 @@ const PLAN = [
         "select": {
             "episode": "v1",
             "name": "v1",
-            "page": "v1"
+            "page": 1
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "page",
             "name",
             "episode"
+        ],
+        "queryArgs": [
+            {
+                "name": "episode",
+                "wire": "episode"
+            },
+            {
+                "name": "name",
+                "wire": "name"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            }
         ],
         "auth": null,
         "status": 200,
         "sample": {
             "info": {
                 "count": 1,
-                "next": "x",
                 "pages": 1,
+                "next": "x",
                 "prev": "x"
             },
             "results": [
                 {
+                    "id": 1,
+                    "name": "x",
                     "air_date": "x",
+                    "episode": "x",
                     "characters": [
                         "x"
                     ],
-                    "created": "2026-01-01T00:00:00Z",
-                    "episode": "x",
-                    "id": 1,
-                    "name": "x",
-                    "url": "x"
+                    "url": "x",
+                    "created": "2026-01-01T00:00:00Z"
                 }
             ]
         },
@@ -168,7 +221,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
@@ -194,36 +252,58 @@ const PLAN = [
         "select": {
             "dimension": "v1",
             "name": "v1",
-            "page": "v1",
+            "page": 1,
             "type": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "page",
             "name",
             "type",
             "dimension"
         ],
+        "queryArgs": [
+            {
+                "name": "dimension",
+                "wire": "dimension"
+            },
+            {
+                "name": "name",
+                "wire": "name"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            },
+            {
+                "name": "type",
+                "wire": "type"
+            }
+        ],
         "auth": null,
         "status": 200,
         "sample": {
             "info": {
                 "count": 1,
-                "next": "x",
                 "pages": 1,
+                "next": "x",
                 "prev": "x"
             },
             "results": [
                 {
-                    "created": "2026-01-01T00:00:00Z",
-                    "dimension": "x",
                     "id": 1,
                     "name": "x",
+                    "type": "x",
+                    "dimension": "x",
                     "residents": [
                         "x"
                     ],
-                    "type": "x",
-                    "url": "x"
+                    "url": "x",
+                    "created": "2026-01-01T00:00:00Z"
                 }
             ]
         },
@@ -244,7 +324,12 @@ const PLAN = [
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
